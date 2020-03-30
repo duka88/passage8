@@ -35,6 +35,12 @@ h3 {
   line-height: $font * 0.32;
 }
 
+.border-red {
+  display: block;
+  width: 100px;
+  height: 5px;
+  background: #b21b42; 
+}
 
 @media only screen and (max-width: 1200px) {
   h2 {
@@ -65,7 +71,8 @@ h3 {
     font-size: $font * 0.6;
     line-height: $font * 0.75;
   }
-  h2 {   
+
+  h2 {
     line-height: $font * 0.5;
   }
 
@@ -116,3 +123,4 @@ h3 {
 @import 'components/mob-services';
 @import 'page-templates/services';
 @import 'page-templates/service-slider';
+@import 'page-templates/contact-us';

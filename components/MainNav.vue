@@ -6,7 +6,7 @@
           <nuxt-link to='/'>HOME</nuxt-link>
         </li>
         <li>
-          <nuxt-link to='/about-us'>ABOUT</nuxt-link>
+          <nuxt-link to='/about-us'>ABOUT US</nuxt-link>
         </li>
         <li class="sub-menu-wrap">
           <nuxt-link to='/services'>SERVICES</nuxt-link><i class="fas fa-chevron-down"></i>
@@ -38,7 +38,7 @@
           </ul>
         </li>       
         <li>
-          <nuxt-link to='/contact'>CONTACT</nuxt-link>
+          <nuxt-link to='/contact'>CONTACT US</nuxt-link>
         </li>
         <p>LET'S TALK</p>
       </ul>

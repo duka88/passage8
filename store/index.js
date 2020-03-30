@@ -1,7 +1,7 @@
 export const state = () => ({
   posts: [],
   post: [],
-  winWidth: '',
+  winWidth: 800,
   isLoading: true
 });
 
