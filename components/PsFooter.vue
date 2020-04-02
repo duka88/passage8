@@ -20,17 +20,32 @@
         </div>
         <div id="col-2" class="col">
           <div class="wrap">
-            <h3>Information</h3>
+            <h3>Services</h3>
             <ul>
               <li>
-                <nuxt-link to='/about'>About us</nuxt-link>
+                <nuxt-link to='/web-development-services'>Development</nuxt-link>
               </li>
-              <li>More Search</li>
               <li>
-                <nuxt-link to='/blog'>Blog</nuxt-link>
+                <nuxt-link to='/seo-services'>Seo</nuxt-link>
               </li>
-              <li>Testemonials</li>
-              <li>Events</li>
+              <li>
+                <nuxt-link to='/it-maintenance-services'>Maintenance</nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to='/content-marketing-services'>Content</nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to='/social-media-marketing-services'>Social Media</nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to='/ppc-management-services'>PPC</nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to='/graphic-design-services'>Design</nuxt-link>
+              </li>
+              <li>
+                <nuxt-link to='/white-label-services'>White Label</nuxt-link>
+              </li>
             </ul>
           </div>
         </div>
@@ -39,9 +54,8 @@
             <h3>Helpful Links</h3>
             <ul>
               <li>
-                <nuxt-link to='/services'>Services</nuxt-link>
-              </li>
-              <li>Supports</li>
+                <nuxt-link to='/'>Support</nuxt-link>
+              </li>             
               <li>
                 <nuxt-link to='/'>Terms & Conditions</nuxt-link>
               </li>
@@ -53,7 +67,6 @@
         </div>
         <div id="col-4" class="col">
           <h3>Contact Us</h3>
-          <a href="tel:123456789"><i class="fas fa-phone-alt"></i> 123456789</a>
           <a href="mail:passage8"><i class="fas fa-envelope"></i> passage8.com</a>
         </div>
         <div class="social-wrap">

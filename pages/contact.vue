@@ -4,7 +4,7 @@
       <main-nav />
       <div class="wrap title-wrap">
         <div class="text-wrap">
-          <h1 id="title">Contact Us<span class="text-red">.</span></h1>
+         <h1 id="title">Contact Us<span class="text-red">.</span></h1>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
 </template>
 <script>
 import MainNav from '@/components/MainNav.vue';
-import ContactUs from '@/components/ContactUs.vue';
+import ContactUs from '@/components/forms/ContactUs.vue';
 import { mapState } from 'vuex';
 export default {
   components: {
