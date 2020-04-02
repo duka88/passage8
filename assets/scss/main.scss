@@ -39,13 +39,50 @@ h3 {
   display: block;
   width: 100px;
   height: 5px;
-  background: #b21b42; 
+  background: #b21b42;
+}
+.error{
+  display: block;
+  height: 15px;
+  font-size: 15px;
+  color: $dark_pink;
+}
+.unactiv{
+  background: $unactiv!important;
+}
+input,
+textarea {
+  border: 2px solid $main-color;
+  outline: none;
+  padding: 20px;
+  font-size: 18px;
+  width: 100%;
+
+
+  &::placeholder {
+    color: $main-color;
+    font-size: 18px;
+  }
 }
 
 @media only screen and (max-width: 1200px) {
   h2 {
     font-size: $font * 0.50;
     line-height: $font * 0.70;
+  }
+
+}
+
+@media only screen and (max-width: 1000px) {
+
+  input,
+  textarea {
+    padding: 15px;
+    font-size: 16px;
+
+    &::placeholder {
+      font-size: 16px;
+    }
   }
 
 }
@@ -94,6 +131,12 @@ h3 {
     line-height: $font * 0.3;
   }
 
+  input,
+  textarea {
+    padding: 10px;
+
+  }
+
 }
 
 @media only screen and (max-width: 320px) {
@@ -124,3 +167,4 @@ h3 {
 @import 'page-templates/services';
 @import 'page-templates/service-slider';
 @import 'page-templates/contact-us';
+@import 'components/contact-us-form';

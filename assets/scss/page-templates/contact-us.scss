@@ -1,4 +1,7 @@
 .contact-template {
+  box-sizing: border-box;
+  padding-bottom: 100px;
+
   .header {
     @extend .flex-center;
     height: 0;
