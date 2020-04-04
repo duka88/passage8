@@ -65,5 +65,9 @@ export default {
       extend (config) {
       
     }
-  }
+  },
+    axios:{
+     baseURL: 'http://cms.test/api/'
+  },
+
 }

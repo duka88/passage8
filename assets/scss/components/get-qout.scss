@@ -1,0 +1,94 @@
+.get-qout {
+  position: relative;
+
+  .contact-us-form {
+    position: absolute;
+    padding: 0;
+    right: 0;
+    top: 42px;
+    width: 900px;
+    background: $white;
+    min-height: 800px;
+    height: 800px;
+     overflow: hidden;
+
+    .form-wrap {
+      margin: 0px auto 30px auto;
+      overflow: hidden;
+
+      .step-wrap {
+        grid-column: span 12;
+        @extend .grid;
+        grid-column-gap: 35px;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        grid-row-gap: 50px;
+      }
+
+      h3 {
+        margin: 30px auto 0;
+        width: 100%;
+        max-width: unset;
+      }
+    }
+  }
+
+  .border {
+    display: block;
+    margin: 15px 0 70px;
+    height: 10px;
+    background: $dark-pink;
+
+    transition: 1s;
+
+    &.width33 {
+      width: 33%;
+    }
+
+    &.width66 {
+      width: 66%;
+    }
+
+    &.width100 {
+      width: 100%;
+    }
+  }
+
+  .info-wrap {
+    @extend .flex-center;
+    align-items: center;
+    width: 100%;
+
+    p {
+      width: 33%;
+      color: $main_color;
+      border: none;
+      letter-spacing: 2px !important;
+      cursor: text;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .done {
+      font-size: 18px;
+    }
+  }
+
+  .button-wrap {
+    @extend .flex-between;
+    align-items: center;
+    max-width: 400px;
+    width: 100%;
+    margin: 80px auto 40px;
+
+    .red-btn {
+      max-width: 130px;
+      margin: 0;
+      color: $white;
+      @extend .flex-center;
+
+    }
+  }
+}
