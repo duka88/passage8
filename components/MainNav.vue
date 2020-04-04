@@ -36,11 +36,13 @@
               <nuxt-link to='/white-label-services'>WHITE LABEL</nuxt-link>
             </li>
           </ul>
-        </li>       
+        </li>
         <li>
           <nuxt-link to='/contact'>CONTACT US</nuxt-link>
         </li>
-        <p>LET'S TALK</p>
+        <li>
+           <get-qoute />
+        </li>
       </ul>
     </div>
     <div v-else class="mob-menu">
@@ -65,21 +67,27 @@
           <li>
             <nuxt-link to='/contact'>CONTACT</nuxt-link>
           </li>
-          <p>LET'S TALK</p>
+         
         </ul>
       </div>
     </div>
+    
   </div>
 </template>
 <script>
+import GetQoute from '@/components/forms/GetQoute.vue';
 import { mapState } from 'vuex';
 export default {
   name: 'MainNav',
+  components: {
+    GetQoute
+  },
   data() {
     return {
       active: false
     }
   },
+
   computed: {
     ...mapState({
       winWidth: 'winWidth'

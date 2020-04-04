@@ -5,19 +5,20 @@
         don’t be shy <span class="text-red">!</span></h3>
       <form>
         <div class="input-wrap-50 focus">
-          <input v-model="form.name.value" @blur="focusOut('name')" @keyup="focusOut('name')" type="text" placeholder="Your Name*">
+          <input v-model="form.name.value" @blur="focusOut('name')" @focus="form.name.error = ''
+          " type="text" placeholder="Your Name*">
           <span class="error">{{form.name.error}}</span>
         </div>
         <div class="input-wrap-50 focus">
-          <input v-model="form.email.value" @blur="focusOut('email')" @keyup="focusOut('email')" type="email" placeholder="Email*">
+          <input v-model="form.email.value" @blur="focusOut('email')" @focus="form.email.error = ''" type="email" placeholder="Email*">
           <span class="error">{{form.email.error}}</span>
         </div>
         <div class="input-wrap-100 focus">
-          <textarea v-model="form.message.value" @blur="focusOut('message')" @keyup="focusOut('message')" rows="10" placeholder="Your Message*"></textarea>
+          <textarea v-model="form.message.value" @blur="focusOut('message')" @focus="form.message.error = ''" rows="10" placeholder="Your Message*"></textarea>
           <span class="error">{{form.message.error}}</span>
         </div>
       </form>
-      <div class="red-btn" :class="{unactiv: chackeErrors}">
+      <div @click="submit()" class="red-btn" :class="{unactiv: chackeErrors}">
         <p>SUBMIT</p>
         <img src="@/assets/img/arrow-right.png" alt="">
       </div>
@@ -46,6 +47,17 @@ export default {
     }
   },
   methods: {
+    submit() {
+      if (!this.chackeErrors) {
+        this.$axios.post('send-mail', {
+          mail: {
+            name: this.form.name.value,
+            email: this.form.email.value,
+            message: this.form.message.value,
+          }
+        })
+      }
+    },
     focusOut(fild) {
       this.validation(fild)
     },
@@ -73,16 +85,17 @@ export default {
         }
       }
     },
- 
-    validateEmail(email){
+
+    validateEmail(email) {
       const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                
-                return re.test(email);
+
+      return re.test(email);
     },
-  
+
+
   },
-  computed:{
-    chackeErrors(){
+  computed: {
+    chackeErrors() {
       return Object.values(this.form).filter(item => item.error !== '').length;
     }
   }
