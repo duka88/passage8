@@ -1,6 +1,6 @@
 <template>
   <div class="contact-us-form">
-    <div class="form-wrap">
+    <div id="contact" class="form-wrap">
       <h3>Write to us,chackeErrors
         don’t be shy <span class="text-red">!</span></h3>
       <form>
@@ -18,10 +18,16 @@
           <span class="error">{{form.message.error}}</span>
         </div>
       </form>
-      <div @click="submit()" class="red-btn" :class="{unactiv: chackeErrors}">
-        <p>SUBMIT</p>
-        <img src="@/assets/img/arrow-right.png" alt="">
-      </div>
+      <transition name="fade" mode="out-in">
+        <div v-if="message" class="red-btn" key="1">
+          <p>{{message}}</p>
+        </div>
+        <div v-else @click="submit()" class="red-btn" :class="{unactiv: chackeErrors}" key="2">
+          <div v-if="loader" class="loader">Loading...</div>
+          <p v-if="!loader">SUBMIT</p>
+          <img v-if="!loader" src="@/assets/img/arrow-right.png" alt="">
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -30,6 +36,8 @@ export default {
   name: 'ContactUs',
   data() {
     return {
+      loader: false,
+      message: false,
       form: {
         name: {
           value: '',
@@ -48,15 +56,43 @@ export default {
   },
   methods: {
     submit() {
-      if (!this.chackeErrors) {
+      if (!this.chackeErrors && !this.loader) {
+        this.loader = true;
         this.$axios.post('send-mail', {
-          mail: {
-            name: this.form.name.value,
-            email: this.form.email.value,
-            message: this.form.message.value,
-          }
-        })
+            mail: {
+              name: this.form.name.value,
+              email: this.form.email.value,
+              message: this.form.message.value,
+            }
+          })
+          .then(() => {
+            this.messageSet();
+            this.loader = false;
+            this.resetForm();
+
+          })
       }
+    },
+    messageSet() {
+
+      this.message = 'Message sent successfully!';
+      setTimeout(() => {
+
+        this.message = false
+
+
+      }, 2000);
+
+    },
+    resetForm() {
+      this.form.name.value = '';
+      this.form.email.value = '';
+      this.form.message.value = '';
+    },
+    resetError() {
+      this.form.name.error = '';
+      this.form.email.error = '';
+      this.form.message.error = '';
     },
     focusOut(fild) {
       this.validation(fild)

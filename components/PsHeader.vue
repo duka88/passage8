@@ -1,18 +1,16 @@
 <template>
   <div class="header">
-   <main-nav />
+    <main-nav />
     <div class="wrap">
       <div class="text-wrap">
-        <h1 id="title">Digital Marketing Company and Increase Your Business Growth</h1>
-        <p>You have a great business idea
-          that you want to present to the world?
-          Passage 8 is here to help! </p>
+        <p id="title">Your Digital Solution  </p>
+        <h1>Hire #1 Digital Marketing Company and Increase Your Business’ Growth</h1>
       </div>
     </div>
   </div>
 </template>
 <script>
-import MainNav from '../components/MainNav.vue';  
+import MainNav from '../components/MainNav.vue';
 import { mapState } from 'vuex';
 export default {
   components: {
@@ -29,7 +27,7 @@ export default {
       winWidth: 'winWidth'
     })
   },
-  
+
 
 };
 

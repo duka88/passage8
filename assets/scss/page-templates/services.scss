@@ -126,13 +126,15 @@
 @media only screen and (max-width: 960px) {
   .services-template {
     .header {
-      padding-bottom: 100%;
+
 
       .w-100 {
         height: 0px;
       }
-      .wrap{
+
+      .wrap {
         margin-top: 0;
+
         h1 {
           font-size: $font;
 
@@ -145,25 +147,30 @@
 
 @media only screen and (max-width: 900px) {
   .services-template {
-    .sekcija1 {
-      padding: 80px 30px;
+    .header {
+      height: 500px;
+      padding: 0 35px;
+      box-sizing: border-box;
 
-      .w-50 {
-        display: flex;
-        width: 100%;
+      .sekcija1 {
+        padding: 80px 30px;
+
+        .w-50 {
+          display: flex;
+          width: 100%;
+        }
+
+        .services-img {
+          max-width: 500px;
+          margin: 0 auto 40px auto;
+        }
+
+        .text-wrap {
+          max-width: unset;
+
+
+        }
       }
-
-      .services-img {
-        max-width: 500px;
-        margin: 0 auto 40px auto;
-      }
-
-      .text-wrap {
-        max-width: unset;
-
-
-      }
-
     }
   }
 }
@@ -174,6 +181,7 @@
       .w-100 {
         height: 0px;
       }
+
       h1 {
         font-size: $font;
 
@@ -185,11 +193,12 @@
 @media only screen and (max-width: 480px) {
   .services-template {
     .header {
-      padding-bottom: 100vh;
+      height: 400px;
     }
   }
+
   .description-section {
-    
+
     h3 {
       font-size: $font * 0.30;
       margin: 40px 0;

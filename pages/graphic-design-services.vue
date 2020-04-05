@@ -4,7 +4,7 @@
       <main-nav />
       <div class="wrap title-wrap">
         <div class="text-wrap">
-          <h1 id="title">Seo<span class="text-red">.</span></h1>
+          <h2 id="title">Graphic Design<span class="text-red">.</span></h2>
         </div>
       </div>
     </div>

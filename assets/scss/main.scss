@@ -8,10 +8,12 @@ body {
   box-sizing: border-box;
   font-family: $mainFam;
   position: relative;
+
 }
 
-html {
-  scroll-behavior: smooth;
+
+a {
+  text-decoration: none;
 }
 
 p {
@@ -20,8 +22,10 @@ p {
   line-height: $font * 0.4;
 }
 
-h1 {
+#title {
   font-size: $font;
+  line-height: $font * 1.1;
+  font-weight: bold;
 }
 
 h2 {
@@ -92,10 +96,61 @@ label {
   }
 }
 
-@media only screen and (max-width: 1200px) {
+.loader {
+  font-size: 10px;
+  text-indent: -9999em;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #ffffff;
+  background: -moz-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  background: -webkit-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  background: -ms-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  background: linear-gradient(to right, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
+  position: relative;
+  -webkit-animation: load3 1.4s infinite linear;
+  animation: load3 1.4s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.loader:before {
+  width: 50%;
+  height: 50%;
+  background: #ffffff;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+
+.loader:after {
+  background: $main-color;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+
+@media only screen and (max-width: 1285px) {
   h2 {
     font-size: $font * 0.50;
     line-height: $font * 0.70;
+  }
+
+  #title {
+    font-size: $font * 0.9;
+    line-height: $font;
   }
 
 }
@@ -123,7 +178,7 @@ label {
 }
 
 @media only screen and (max-width: 560px) {
-  h1 {
+  #title {
     font-size: $font * 0.8;
     line-height: $font;
   }
@@ -131,7 +186,7 @@ label {
 }
 
 @media only screen and (max-width: 480px) {
-  h1 {
+  #title {
     font-size: $font * 0.6;
     line-height: $font * 0.75;
   }
@@ -148,7 +203,7 @@ label {
 }
 
 @media only screen and (max-width: 360px) {
-  h1 {
+  #title {
     font-size: $font * 0.5;
     line-height: $font * 0.65;
   }
@@ -167,7 +222,7 @@ label {
 }
 
 @media only screen and (max-width: 320px) {
-  h1 {
+  #title {
     font-size: $font * 0.5;
     line-height: $font * 0.6;
     margin-bottom: 0 !important;

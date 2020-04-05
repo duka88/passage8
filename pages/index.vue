@@ -3,7 +3,7 @@
     <ps-header />
     <!-- <div class="" v-if="isLoading">
       <svg-vue />
-    </div>-->
+    </div> -->
     <div class="services">
       <our-services v-if="winWidth > 720" />
       <div v-else class="container-full services-mob">
@@ -18,7 +18,7 @@
         </div>
         <services-mob />
       </div>
-    </div>
+    </div> 
     <div class="strategies">
       <div class="text-wrap">
         <div class="wrap">
