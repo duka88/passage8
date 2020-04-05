@@ -2,23 +2,7 @@
   box-sizing: border-box;
   padding-bottom: 100px;
 
-  .header {
-    @extend .flex-center;
-    height: 0;
-    padding-bottom: 39%;
-    position: relative;
 
-    .title-wrap {
-      @extend .flex-center;
-      position: absolute;
-      height: 100%;
-      align-items: center;
-
-      h1 {
-        font-size: $font*1.5;
-      }
-    }
-  }
 
   .container {
     @extend .flex-between;

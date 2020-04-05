@@ -1,10 +1,10 @@
 <template>
-  <div class="contact-template">
+  <div class=" services-template contact-template">
     <div class="header">
       <main-nav />
-      <div class="wrap title-wrap">
+     <div class="wrap title-wrap">
         <div class="text-wrap">
-         <h1 id="title">Contact Us<span class="text-red">.</span></h1>
+          <h2 id="title">Contact Us<span class="text-red">.</span></h2>
         </div>
       </div>
     </div>
