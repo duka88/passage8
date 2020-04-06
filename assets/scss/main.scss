@@ -61,7 +61,7 @@ input,
 textarea {
   border: 2px solid $main-color;
   outline: none;
-  padding: 20px;
+  padding: 13px;
   font-size: 18px;
   width: 100%;
 
@@ -69,6 +69,64 @@ textarea {
   &::placeholder {
     color: $main-color;
     font-size: 18px;
+  }
+}
+
+.select {
+  width: 100%;
+  position: relative;
+  display: flex;
+
+  .selected {
+    text-align: left;
+    width: 100%;
+    border: 2px solid $main-color;
+    outline: none;
+    padding: 4px 13px;
+    font-size: 18px;
+    letter-spacing: 0px !important;
+    width: 100%;
+    color: $main-color;
+    height: unset;
+    margin: 0;
+  }
+
+  .options {
+    @extend .flex-center;
+    top: 50px;
+    position: absolute;
+    width: 99%;
+    border: 2px solid $main-color;
+    background: $white;
+    z-index: 99;
+
+    .option {
+      color: #000;
+      border: none;
+      text-align: left;
+      padding: 4px 13px;
+      outline: none;
+      padding: 4px 13px;
+      font-size: 18px;
+      letter-spacing: 0px !important;
+      width: 98%;
+
+      margin: 0;
+
+      &:hover {
+        background: $main-color;
+        color: $white;
+      }
+    }
+  }
+
+  .fa-chevron-down {
+    color: $main-color;
+    position: absolute;
+    right: 15px;
+    font-size: 18px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
