@@ -37,6 +37,17 @@
       flex-wrap: wrap;
       align-items: center;
       width: 100%;
+      position: relative;
+
+      .fa-plus{
+        color: $dark-pink;
+        position: absolute;
+        top: 17px;     
+        right: 15px;
+      }
+      .fa-times{
+        color: $dark-pink;
+      }
     }
 
     .input-wrap-100 {
