@@ -30,28 +30,28 @@
                   <span class="error">{{form.cName.error}}</span>
                 </div>
                 <div class="input-wrap-50">
-                  <i @click="pushWLinks()" v-if="wLinks.length < 5" class="fas fa-plus"></i>
-                  <input v-model="form.wLink.value" type="text" placeholder="Link to your website" :disabled="wLinks.length >= 5">
+                  <i @click="pushWLinks()" v-if="form.wLink.values.length < 3 && form.wLink.value" class="fas fa-plus"></i>
+                  <input v-model="form.wLink.value" type="text" placeholder="Link to your website" :disabled="form.wLink.values.length >= 5">
                   <span class="error">
-                    <span v-for="(value, index) in wLinks" :key="index" class="error">{{value}}
+                    <span v-for="(value, index) in form.wLink.values" :key="index" class="error">{{value}}
                       <i @click="removeWLink(index)" class="fas fa-times"></i></span>
                   </span>
                 </div>
                 <div class="input-wrap-50">
-                  <i @click="pushWLinks()" v-if="sLinks.length < 5" class="fas fa-plus"></i>
+                  <i @click="pushSLinks()" v-if="form.sLink.values.length < 5 && form.sLink.value" class="fas fa-plus"></i>
                   <i @click="pushSLinks()" class="fas fa-plus"></i>
-                  <input v-model="form.sLink.value" type="text" placeholder="Link to social networks" :disabled="sLinks.length >= 5">
+                  <input v-model="form.sLink.value" type="text" placeholder="Link to social networks" :disabled="form.sLink.values.length >= 5">
                   <span class="error">
-                    <span v-for="(value, index) in sLinks" :key="index" class="error">{{value}}
+                    <span v-for="(value, index) in form.sLink.values" :key="index" class="error">{{value}}
                       <i @click="removeSLinks(index)" class="fas fa-times"></i></span>
                   </span>
                 </div>
                 <div class="input-wrap-100 ">
                   <label for="">How’d you discover our services?</label>
                 </div>
-                <div v-for="(value, index) in relateLinks.values" class="input-wrap-50" v-if="relateLinks.text !== value">
+                <div v-for="(value, index) in form.rLink.values" class="input-wrap-50" v-if="form.rLink.text !== value">
                   <span @click="relateCheck(index, value)" class="checkbox">
-                    <i v-if="relateLinks.value === index" class="fas fa-check"></i>
+                    <i v-if="form.rLink.index === index" class="fas fa-check"></i>
                   </span><span>{{value}}</span>
                 </div>
                 <div v-else class="input-wrap-50">
@@ -61,44 +61,74 @@
               </div>
               <!-------STEP 2---------->
               <div v-if="step === 2 " class="step-wrap" key="step2">
-                <div class="input-wrap-50 focus">
-                  <input v-model="form.name.value" type="text" placeholder="Your Name*">
-                  <span class="error">{{form.name.error}}</span>
+                <div class="input-wrap-50">
+                  <input v-model="form.country.value" type="text" placeholder="Country*">
+                  <span class="error">{{form.country.error}}</span>
                 </div>
-                <div class="input-wrap-50 focus">
-                  <input v-model="form.email.value" type="email" placeholder="Email*">
-                  <span class="error">{{form.email.error}}</span>
+                <div class="input-wrap-50">
+                  <div class="select" v-if="!form.bussinesNiche.text">
+                    <p class="selected" @click="form.bussinesNiche.open = !form.bussinesNiche.open">
+                      {{form.bussinesNiche.value}}
+                      <i class="fas fa-chevron-down"></i></p>
+                    <div v-if="form.bussinesNiche.open" class="options">
+                      <p v-for="option in form.bussinesNiche.options" class="option" @click="setBussinesNiche(option)">{{option}}</p>
+                    </div>
+                  </div>
+                  <input v-else v-model="form.bussinesNiche.value" type="text" placeholder="Other*">
+                  <span class="error">{{form.bussinesNiche.error}}</span>
                 </div>
                 <div class="input-wrap-100 focus">
-                  <textarea v-model="form.message.value" rows="5" placeholder="Your Message*"></textarea>
-                  <span class="error">{{form.message.error}}</span>
+                  <textarea v-model="form.description.value" maxlength="150" rows="5" placeholder="Describe your bussines in short"></textarea>
+                  <span class="error">{{form.description.error}}</span>
+                </div>
+                <div class="input-wrap-50">
+                  <i @click="pushCompetitor()" v-if="form.competitor.values.length < 5 && form.competitor.value" class="fas fa-plus"></i>
+                  <i @click="pushCompetitor()" class="fas fa-plus"></i>
+                  <input v-model="form.competitor.value" type="text" placeholder="Link to social networks" :disabled="form.competitor.values.length >= 5">
+                  <span class="error">
+                    <span v-for="(value, index) in form.competitor.values" :key="index" class="error">{{value}}
+                      <i @click="removeCompetitor(index)" class="fas fa-times"></i></span>
+                  </span>
                 </div>
               </div>
               <!-------STEP 3---------->
               <div v-if="step === 3 " class="step-wrap" key="step3">
-                <div class="input-wrap-50 ">
-                  <input v-model="form.name.value" @blur="focusOut('name')" @focus="form.name.error = ''
-          " type="text" placeholder="Company Name*">
-                  <span class="error">{{form.name.error}}</span>
+                <div class="input-wrap-50">
+                  <div class="select">
+                    <p class="selected" @click="form.services.open = !form.services.open">
+                      {{form.services.value}}
+                      <i class="fas fa-chevron-down"></i></p>
+                    <div v-if="form.services.open" class="options">
+                      <p v-for="option in form.services.options" class="option" @click="setServices(option)">{{option}}</p>
+                    </div>
+                  </div>
+                  <span class="error">{{form.services.error}}</span>
                 </div>
                 <div class="input-wrap-50">
-                  <input v-model="form.email.value" @blur="focusOut('email')" @focus="form.email.error = ''" type="email" placeholder="Email*">
-                  <span class="error">{{form.email.error}}</span>
+                  <div class="select">
+                    <p class="selected" @click="form.delivery.open = !form.delivery.open">
+                      {{form.delivery.value}}
+                      <i class="fas fa-chevron-down"></i></p>
+                    <div v-if="form.delivery.open" class="options">
+                      <p v-for="option in form.delivery.options" class="option" @click="setDelivery(option)">{{option}}</p>
+                    </div>
+                  </div>
+                  <span class="error">{{form.services.error}}</span>
+                </div>
+                <div class="input-wrap-50">
+                  <div class="select">
+                    <p class="selected" @click="form.budget.open = !form.budget.open">
+                      {{form.budget.value}}
+                      <i class="fas fa-chevron-down"></i></p>
+                    <div v-if="form.budget.open" class="options">
+                      <p v-for="option in form.budget.options" class="option" @click="setBudget(option)">{{option}}</p>
+                    </div>
+                  </div>
+                  <span class="error">{{form.services.error}}</span>
                 </div>
                 <div class="input-wrap-100 ">
-                  <label for="">How did you discover our services?</label>
-                </div>
-                <div class="input-wrap-50 ">
-                  <span class="checkbox"></span><span>I found you by Google search</span>
-                </div>
-                <div class="input-wrap-50 ">
-                  <span class="checkbox"></span><span>I found you by Google search</span>
-                </div>
-                <div class="input-wrap-50 ">
-                  <span class="checkbox"></span><span>I found you by Google search</span>
-                </div>
-                <div class="input-wrap-50 ">
-                  <span class="checkbox"></span><span>I found you by Google search</span>
+                  <textarea v-model="form.additional.value" maxlength="150" rows="5" placeholder="Anything we missed out?"></textarea>
+                  <span class="error">{{form.additional.error}}</span>
                 </div>
               </div>
             </transition>
@@ -126,8 +156,6 @@ export default {
     return {
       step: 1,
       open: false,
-      wLinks: [],
-      sLinks: [],
       relateLinks: {
         values: ['I Was Referred By A Friend', 'I Found You On Social Network', 'Google search', 'Other'],
         value: '',
@@ -147,22 +175,63 @@ export default {
           error: ''
         },
         wLink: {
-          count: 1,
           value: '',
-          error: ''
+          error: '',
+          values: []
         },
         sLink: {
-          count: 1,
-          value: [],
-          error: ''
+          value: '',
+          error: '',
+          values: []
         },
         rLink: {
           value: '',
-          error: ''
+          error: '',
+          values: ['I Was Referred By A Friend', 'I Found You On Social Network', 'Google search', 'Other'],
+          index: '',
+          text: false
         },
-        message: {
+        country: {
           value: '',
           error: ''
+        },
+        bussinesNiche: {
+          options: ['Healtcare', 'Politics', 'Music', 'Education', 'Agroculture', 'IT', 'Non Profital', 'Ecology', 'Other'],
+          value: 'Your Bussines Niche*',
+          error: '',
+          open: false,
+          text: false
+        },
+        description: {
+          value: '',
+          error: ''
+        },
+        competitor: {
+          value: '',
+          error: '',
+          values: []
+        },
+        services: {
+          options: ['Web development', 'SEO', 'Social Media Marketing', 'Pay Per Click', 'Design', 'Link Building'],
+          value: 'Service that you require*',
+          error: '',
+          open: false
+        },
+        delivery: {
+          options: ['1 month', 'Minimum 3 months', 'Minimum 6 months', '1+ year'],
+          value: 'Time-frame for project delivery*',
+          error: '',
+          open: false
+        },
+        budget: {
+          options: ['< 1000$', '1000$ - 5000$', '5000$ - 10000$', '10000$ <'],
+          value: 'What is the budget for your project?*',
+          error: '',
+          open: false
+        },
+        additional: {
+          value: '',
+          error: '',
         }
       },
     }
@@ -179,33 +248,62 @@ export default {
       }
 
     },
+    setBussinesNiche(value) {
+      this.form.bussinesNiche.value = value;
+      this.form.bussinesNiche.open = false;
+
+      if (value === 'Other') {
+        this.form.bussinesNiche.text = true;
+      }
+
+    },
+    setServices(value) {
+      this.form.services.value = value;
+      this.form.services.open = false;
+    },
+    setDelivery(value) {
+      this.form.delivery.value = value;
+      this.form.delivery.open = false;
+    },
+    setBudget(value) {
+      this.form.budget.value = value;
+      this.form.budget.open = false;
+    },
     relateCheck(index, input) {
-      this.relateLinks.value = index;
+      this.form.rLink.index = index;
       this.form.rLink.value = input;
-      if(this.form.rLink.value === 'Other') {
-          this.relateLinks.text = 'Other';
-           this.form.rLink.value = '';
-      }else{
-        this.relateLinks.text = false;
+      if (this.form.rLink.value === 'Other') {
+        this.form.rLink.text = 'Other';
+        this.form.rLink.value = '';
+      } else {
+        this.form.rLink.text = false;
       }
     },
     focusOut(fild) {
       this.validation(fild)
     },
     pushSLinks() {
-      this.sLinks.push(this.form.sLink.value);
+      this.form.sLink.values.push(this.form.sLink.value);
       this.form.sLink.value = '';
     },
     removeSLinks(index) {
-      this.sLinks.splice(index, 1);
+      this.form.sLink.values.splice(index, 1);
 
     },
     pushWLinks() {
-      this.wLinks.push(this.form.wLink.value);
+      this.form.wLink.values.push(this.form.wLink.value);
       this.form.wLink.value = '';
     },
     removeWLink(index) {
-      this.wLinks.splice(index, 1);
+      this.form.wLink.values.splice(index, 1);
+
+    },
+    pushCompetitor() {
+      this.form.competitor.values.push(this.form.competitor.value);
+      this.form.competitor.value = '';
+    },
+    removeCompetitor(index) {
+      this.form.competitor.values.splice(index, 1);
 
     },
     validation(fild) {
