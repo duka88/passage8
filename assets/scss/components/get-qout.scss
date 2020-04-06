@@ -1,20 +1,39 @@
 .get-qout {
   position: relative;
 
+  input,
+  textarea {
+    padding: 13px;
+  }
+
   .contact-us-form {
-    position: absolute;
-    padding: 0;
-    right: 0;
-    top: 42px;
-    width: 900px;
-    background: $white;
-    min-height: 800px;
-    height: 800px;
-     overflow: hidden;
+    @extend .flex-center;
+    align-items: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    width: 100vw;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    background: $ovewrlay;
+
 
     .form-wrap {
-      margin: 0px auto 30px auto;
+      margin: 0px auto;
       overflow: hidden;
+      background: $white;
+      height: 837px;
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+
+      .close {
+        color: $dark-pink;
+        font-size: 25px;
+        position: absolute;
+        right: 5%;
+      }
 
       .step-wrap {
         grid-column: span 12;
@@ -23,20 +42,21 @@
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
-        grid-row-gap: 50px;
+        grid-row-gap: 30px;
       }
 
       h3 {
-        margin: 30px auto 0;
+        margin: 0px auto 0;
         width: 100%;
         max-width: unset;
+        font-size: 40px;
       }
     }
   }
 
   .border {
     display: block;
-    margin: 15px 0 70px;
+    margin: 15px 0 60px;
     height: 10px;
     background: $dark-pink;
 
@@ -81,7 +101,7 @@
     align-items: center;
     max-width: 400px;
     width: 100%;
-    margin: 80px auto 40px;
+    margin: 50px auto 15px;
 
     .red-btn {
       max-width: 130px;
