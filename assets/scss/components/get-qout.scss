@@ -80,10 +80,46 @@
           grid-template-rows: 30px 28px 1fr 1fr 1fr;
         }
       }
-      .list{
-        border: 2px solid #b21b42;
+
+      .link-count{
+          position: absolute;
+          top: 50px;
+          right: 0;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          text-align: center;
+          z-index: 2;
+
+          span{
+            @extend .flex-center;
+            align-items: center;
+            width: 105px;
+            height: 20px;
+            background: $main_color;
+          }
+
+          span, i{
+            font-size: 10px;
+            line-height: 1;
+            color: $white;
+            cursor: pointer;
+          }
+
+          &:hover{
+            & + .link-list{
+              display: block!important;
+            }
+          }
+      }
+      .link-list{
+        position: absolute;
+        top: 51px;
+        background: $white;
+        border: 2px solid $main_color;
         border-top: 0;
-        width: 100%;
+        width: 99%;
+        z-index: 1;
 
         .error{
           padding: 5px 10px;
