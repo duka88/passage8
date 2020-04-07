@@ -32,7 +32,7 @@
                 <div class="input-wrap-50">
                   <i @click="pushWLinks()" v-if="wLinks.length < 5" class="fas fa-plus"></i>
                   <input v-model="form.wLink.value" type="text" placeholder="Link to your website" :disabled="wLinks.length >= 5">
-                  <span class="error">
+                  <span class="list">
                     <span v-for="(value, index) in wLinks" :key="index" class="error">{{value}}
                       <i @click="removeWLink(index)" class="fas fa-times"></i></span>
                   </span>
@@ -41,22 +41,24 @@
                   <i @click="pushWLinks()" v-if="sLinks.length < 5" class="fas fa-plus"></i>
                   <i @click="pushSLinks()" class="fas fa-plus"></i>
                   <input v-model="form.sLink.value" type="text" placeholder="Link to social networks" :disabled="sLinks.length >= 5">
-                  <span class="error">
+                  <div class="list">
                     <span v-for="(value, index) in sLinks" :key="index" class="error">{{value}}
                       <i @click="removeSLinks(index)" class="fas fa-times"></i></span>
-                  </span>
+                  </div>
                 </div>
                 <div class="input-wrap-100 ">
                   <label for="">How’d you discover our services?</label>
                 </div>
-                <div v-for="(value, index) in relateLinks.values" class="input-wrap-50" v-if="relateLinks.text !== value">
-                  <span @click="relateCheck(index, value)" class="checkbox">
-                    <i v-if="relateLinks.value === index" class="fas fa-check"></i>
-                  </span><span>{{value}}</span>
-                </div>
-                <div v-else class="input-wrap-50">
-                  <input v-model="form.rLink.value" type="text" placeholder="Other">
-                  <span class="error">{{form.rLink.error}}</span>
+                <div class="checkboxes">
+                  <div v-for="(value, index) in relateLinks.values" class="input-wrap-50" v-if="relateLinks.text !== value">
+                    <span @click="relateCheck(index, value)" class="checkbox">
+                      <i v-if="relateLinks.value === index" class="fas fa-check"></i>
+                    </span><span>{{value}}</span>
+                  </div>
+                  <div v-else class="input-wrap-50">
+                    <input v-model="form.rLink.value" type="text" placeholder="Other">
+                    <span class="error">{{form.rLink.error}}</span>
+                  </div>
                 </div>
               </div>
               <!-------STEP 2---------->
@@ -75,7 +77,7 @@
                 </div>
               </div>
               <!-------STEP 3---------->
-              <div v-if="step === 3 " class="step-wrap" key="step3">
+              <div v-if="step === 3 " class="step-wrap step-3" key="step3">
                 <div class="input-wrap-50 ">
                   <input v-model="form.name.value" @blur="focusOut('name')" @focus="form.name.error = ''
           " type="text" placeholder="Company Name*">
@@ -85,20 +87,22 @@
                   <input v-model="form.email.value" @blur="focusOut('email')" @focus="form.email.error = ''" type="email" placeholder="Email*">
                   <span class="error">{{form.email.error}}</span>
                 </div>
-                <div class="input-wrap-100 ">
-                  <label for="">How did you discover our services?</label>
-                </div>
-                <div class="input-wrap-50 ">
-                  <span class="checkbox"></span><span>I found you by Google search</span>
-                </div>
-                <div class="input-wrap-50 ">
-                  <span class="checkbox"></span><span>I found you by Google search</span>
-                </div>
-                <div class="input-wrap-50 ">
-                  <span class="checkbox"></span><span>I found you by Google search</span>
-                </div>
-                <div class="input-wrap-50 ">
-                  <span class="checkbox"></span><span>I found you by Google search</span>
+                <div class="checkboxes">
+                  <div class="input-wrap-100 ">
+                    <label for="">How did you discover our services?</label>
+                  </div>
+                  <div class="input-wrap-50 ">
+                    <span class="checkbox"></span><span>I found you by Google search</span>
+                  </div>
+                  <div class="input-wrap-50 ">
+                    <span class="checkbox"></span><span>I found you by Google search</span>
+                  </div>
+                  <div class="input-wrap-50 ">
+                    <span class="checkbox"></span><span>I found you by Google search</span>
+                  </div>
+                  <div class="input-wrap-50 ">
+                    <span class="checkbox"></span><span>I found you by Google search</span>
+                  </div>
                 </div>
               </div>
             </transition>
