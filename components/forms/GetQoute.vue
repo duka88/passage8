@@ -30,33 +30,35 @@
                   <span class="error">{{form.cName.error}}</span>
                 </div>
                 <div class="input-wrap-50">
-                  <i @click="pushWLinks()" v-if="form.wLink.values.length < 3 && form.wLink.value" class="fas fa-plus"></i>
-                  <input v-model="form.wLink.value" type="text" placeholder="Link to your website" :disabled="form.wLink.values.length >= 5">
-                  <span class="error">
-                    <span v-for="(value, index) in form.wLink.values" :key="index" class="error">{{value}}
+                  <i @click="pushWLinks()" v-if="wLinks.length < 5" class="fas fa-plus"></i>
+                  <input v-model="form.wLink.value" type="text" placeholder="Link to your website" :disabled="wLinks.length >= 5">
+                  <span class="list">
+                    <span v-for="(value, index) in wLinks" :key="index" class="error">{{value}}
                       <i @click="removeWLink(index)" class="fas fa-times"></i></span>
                   </span>
                 </div>
                 <div class="input-wrap-50">
                   <i @click="pushSLinks()" v-if="form.sLink.values.length < 5 && form.sLink.value" class="fas fa-plus"></i>
                   <i @click="pushSLinks()" class="fas fa-plus"></i>
-                  <input v-model="form.sLink.value" type="text" placeholder="Link to social networks" :disabled="form.sLink.values.length >= 5">
-                  <span class="error">
-                    <span v-for="(value, index) in form.sLink.values" :key="index" class="error">{{value}}
+                  <input v-model="form.sLink.value" type="text" placeholder="Link to social networks" :disabled="sLinks.length >= 5">
+                  <div class="list">
+                    <span v-for="(value, index) in sLinks" :key="index" class="error">{{value}}
                       <i @click="removeSLinks(index)" class="fas fa-times"></i></span>
-                  </span>
+                  </div>
                 </div>
                 <div class="input-wrap-100 ">
                   <label for="">How’d you discover our services?</label>
                 </div>
-                <div v-for="(value, index) in form.rLink.values" class="input-wrap-50" v-if="form.rLink.text !== value">
-                  <span @click="relateCheck(index, value)" class="checkbox">
-                    <i v-if="form.rLink.index === index" class="fas fa-check"></i>
-                  </span><span>{{value}}</span>
-                </div>
-                <div v-else class="input-wrap-50">
-                  <input v-model="form.rLink.value" type="text" placeholder="Other">
-                  <span class="error">{{form.rLink.error}}</span>
+                <div class="checkboxes">
+                  <div v-for="(value, index) in relateLinks.values" class="input-wrap-50" v-if="relateLinks.text !== value">
+                    <span @click="relateCheck(index, value)" class="checkbox">
+                      <i v-if="relateLinks.value === index" class="fas fa-check"></i>
+                    </span><span>{{value}}</span>
+                  </div>
+                  <div v-else class="input-wrap-50">
+                    <input v-model="form.rLink.value" type="text" placeholder="Other">
+                    <span class="error">{{form.rLink.error}}</span>
+                  </div>
                 </div>
               </div>
               <!-------STEP 2---------->
@@ -92,7 +94,7 @@
                 </div>
               </div>
               <!-------STEP 3---------->
-              <div v-if="step === 3 " class="step-wrap" key="step3">
+              <div v-if="step === 3 " class="step-wrap step-3" key="step3">
                 <div class="input-wrap-50">
                   <div class="select">
                     <p class="selected" @click="form.services.open = !form.services.open">
