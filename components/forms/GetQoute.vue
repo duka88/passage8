@@ -32,16 +32,22 @@
                 <div class="input-wrap-50">
                   <i @click="pushWLinks()" v-if="form.wLink.values.length < 5" class="fas fa-plus"></i>
                   <input v-model="form.wLink.value" type="text" placeholder="Link to your website" :disabled="form.wLink.values.length >= 5">
-                  <span class="list">
+                  <div class="link-count">
+                      <span>1 link(s) added <i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+                  </div>
+                  <div class="link-list" style="display: none">
                     <span v-for="(value, index) in form.wLink.values" :key="index" class="error">{{value}}
                       <i @click="removeWLink(index)" class="fas fa-times"></i></span>
-                  </span>
+                  </div>
                 </div>
                 <div class="input-wrap-50">
                   <i @click="pushSLinks()" v-if="form.sLink.values.length < 5 && form.sLink.value" class="fas fa-plus"></i>
                   <i @click="pushSLinks()" class="fas fa-plus"></i>
                   <input v-model="form.sLink.value" type="text" placeholder="Link to social networks" :disabled="form.sLink.values.length >= 5">
-                  <div class="list">
+                  <div class="link-count">
+                      <span>1 link(s) added <i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+                  </div>
+                  <div class="link-list" style="display: none">
                     <span v-for="(value, index) in form.sLink.values" :key="index" class="error">{{value}}
                       <i @click="removeSLinks(index)" class="fas fa-times"></i></span>
                   </div>
