@@ -66,16 +66,21 @@ export default {
             }
           })
           .then(() => {
-            this.messageSet();
+            this.messageSet('Message sent successfully!');
             this.loader = false;
             this.resetForm();
 
           })
+          .catch(()=>{
+            this.messageSet('Somethig went wrong');
+            this.loader = false;
+            this.resetForm();
+          })
       }
     },
-    messageSet() {
+    messageSet(msg) {
 
-      this.message = 'Message sent successfully!';
+      this.message = msg;
       setTimeout(() => {
 
         this.message = false

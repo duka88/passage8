@@ -18,7 +18,7 @@
               <div v-if="step === 1 " class="step-wrap" key="step1">
                 <div class="input-wrap-50 ">
                   <input v-model="form.name.value" @blur="focusOut('name')" @focus="form.name.error = ''
-          " type="text" placeholder="Company Name*">
+          " type="text" placeholder="Name*">
                   <span class="error">{{form.name.error}}</span>
                 </div>
                 <div class="input-wrap-50">
@@ -30,24 +30,25 @@
                   <span class="error">{{form.cName.error}}</span>
                 </div>
                 <div class="input-wrap-50">
-                  <i @click="pushWLinks()" v-if="form.wLink.values.length < 5" class="fas fa-plus"></i>
-                  <input v-model="form.wLink.value" type="text" placeholder="Link to your website" :disabled="form.wLink.values.length >= 5">
+                  <i @click="pushWLinks()" v-if="form.wLink.values.length < 3 && form.wLink.value" class="fas fa-plus"></i>
+                  <input v-model="form.wLink.value" type="text" placeholder="Link to your website" :disabled="form.wLink.values.length >= 3">
                   <div class="link-count">
-                      <span>1 link(s) added <i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+                    <span v-if="form.wLink.values.length > 0" @click="form.wLink.list = !form.wLink.list">
+                      {{form.wLink.values.length}} link(s) added <i class="fas fa-chevron-down" aria-hidden="true"></i></span>
                   </div>
-                  <div class="link-list" style="display: none">
+                  <div class="link-list" v-if="form.wLink.list">
                     <span v-for="(value, index) in form.wLink.values" :key="index" class="error">{{value}}
                       <i @click="removeWLink(index)" class="fas fa-times"></i></span>
                   </div>
                 </div>
                 <div class="input-wrap-50">
-                  <i @click="pushSLinks()" v-if="form.sLink.values.length < 5 && form.sLink.value" class="fas fa-plus"></i>
-                  <i @click="pushSLinks()" class="fas fa-plus"></i>
-                  <input v-model="form.sLink.value" type="text" placeholder="Link to social networks" :disabled="form.sLink.values.length >= 5">
+                  <i @click="pushSLinks()" v-if="form.sLink.values.length < 3 && form.sLink.value" class="fas fa-plus"></i>
+                  <input v-model="form.sLink.value" type="text" placeholder="Link to social networks" :disabled="form.sLink.values.length >= 3">
                   <div class="link-count">
-                      <span>1 link(s) added <i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+                    <span v-if="form.sLink.values.length > 0" @click="form.sLink.list = !form.sLink.list">
+                      {{form.sLink.values.length}} link(s) added <i class="fas fa-chevron-down" aria-hidden="true"></i></span>
                   </div>
-                  <div class="link-list" style="display: none">
+                  <div class="link-list" v-if="form.sLink.list">
                     <span v-for="(value, index) in form.sLink.values" :key="index" class="error">{{value}}
                       <i @click="removeSLinks(index)" class="fas fa-times"></i></span>
                   </div>
@@ -56,7 +57,7 @@
                   <label for="">How’d you discover our services?</label>
                 </div>
                 <div class="checkboxes">
-                  <div v-for="(value, index) in form.rLink.values" class="input-wrap-50" v-if="form.rLink.text !== value">
+                  <div v-for="(value, index) in form.rLink.options" class="input-wrap-50" v-if="form.rLink.text !== value">
                     <span @click="relateCheck(index, value)" class="checkbox">
                       <i v-if="form.rLink.index === index" class="fas fa-check"></i>
                     </span><span>{{value}}</span>
@@ -70,7 +71,7 @@
               <!-------STEP 2---------->
               <div v-if="step === 2 " class="step-wrap" key="step2">
                 <div class="input-wrap-50">
-                  <input v-model="form.country.value" type="text" placeholder="Country*">
+                  <input v-model="form.country.value" type="text" placeholder="Country*" @blur="focusOut('country')" @focus="form.country.error = ''">
                   <span class="error">{{form.country.error}}</span>
                 </div>
                 <div class="input-wrap-50">
@@ -90,13 +91,17 @@
                   <span class="error">{{form.description.error}}</span>
                 </div>
                 <div class="input-wrap-50">
-                  <i @click="pushCompetitor()" v-if="form.competitor.values.length < 5 && form.competitor.value" class="fas fa-plus"></i>
-                  <i @click="pushCompetitor()" class="fas fa-plus"></i>
-                  <input v-model="form.competitor.value" type="text" placeholder="Link to social networks" :disabled="form.competitor.values.length >= 5">
-                  <span class="error">
+                  <i @click="pushCompetitor()" v-if="form.competitor.values.length < 3 && form.competitor.value" class="fas fa-plus"></i>
+                  <input v-model="form.competitor.value" type="text" placeholder="Your main competitors*" :disabled="form.competitor.values.length >= 3" @blur="focusOut('competitor')" @focus="form.competitor.error = ''">
+                  <span class="error">{{form.competitor.error}}</span>
+                  <div class="link-count">
+                    <span v-if="form.competitor.values.length > 0" @click="form.competitor.list = !form.competitor.list">
+                      {{form.competitor.values.length}} link(s) added <i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+                  </div>
+                  <div class="link-list" v-if="form.competitor.list">
                     <span v-for="(value, index) in form.competitor.values" :key="index" class="error">{{value}}
                       <i @click="removeCompetitor(index)" class="fas fa-times"></i></span>
-                  </span>
+                  </div>
                 </div>
               </div>
               <!-------STEP 3---------->
@@ -121,7 +126,7 @@
                       <p v-for="option in form.delivery.options" class="option" @click="setDelivery(option)">{{option}}</p>
                     </div>
                   </div>
-                  <span class="error">{{form.services.error}}</span>
+                  <span class="error">{{form.delivery.error}}</span>
                 </div>
                 <div class="input-wrap-50">
                   <div class="select">
@@ -132,7 +137,7 @@
                       <p v-for="option in form.budget.options" class="option" @click="setBudget(option)">{{option}}</p>
                     </div>
                   </div>
-                  <span class="error">{{form.services.error}}</span>
+                  <span class="error">{{form.budget.error}}</span>
                 </div>
                 <div class="input-wrap-100 ">
                   <textarea v-model="form.additional.value" maxlength="150" rows="5" placeholder="Anything we missed out?"></textarea>
@@ -142,11 +147,16 @@
             </transition>
           </form>
           <div class="button-wrap">
-            <div @click="step--" class="red-btn">
+            <div v-if="step > 1" @click="step--" class="red-btn">
               PREVIUS
             </div>
-            <div @click="step++" class="red-btn">
+            <div v-if="step < 3" @click="nextStep()" class="red-btn" :class="{unactiv: chackeErrors}">
               NEXT
+            </div>
+            <div v-if="step === 3" @click="submit()" class="red-btn" :class="{unactiv: chackeErrors}">
+              <div v-if="loader" class="loader">Loading...</div>
+              <p v-if="!loader">SUBMIT</p>
+              
             </div>
           </div>
         </div>
@@ -164,6 +174,8 @@ export default {
     return {
       step: 1,
       open: false,
+      message: false,
+      loader: false,
       form: {
         name: {
           value: '',
@@ -180,19 +192,22 @@ export default {
         wLink: {
           value: '',
           error: '',
-          values: []
+          values: [],
+          list: false
         },
         sLink: {
           value: '',
           error: '',
-          values: []
+          values: [],
+          list: false
         },
         rLink: {
           value: '',
           error: '',
-          values: ['I Was Referred By A Friend', 'I Found You On Social Network', 'Google search', 'Other'],
+          options: ['I Was Referred By A Friend', 'I Found You On Social Network', 'Google search', 'Other'],
           index: '',
-          text: false
+          text: false,
+
         },
         country: {
           value: '',
@@ -212,7 +227,8 @@ export default {
         competitor: {
           value: '',
           error: '',
-          values: []
+          values: [],
+          list: false
         },
         services: {
           options: ['Web development', 'SEO', 'Social Media Marketing', 'Pay Per Click', 'Design', 'Link Building'],
@@ -240,6 +256,74 @@ export default {
     }
   },
   methods: {
+    nextStep() {
+     
+      if (this.step === 1) {
+        this.step1Validation();
+
+      } else {
+        this.step2Validation();
+      }
+
+      if (this.chackeErrors === 0) {
+        this.step++;
+      }
+    },
+    messageSet(msg) {
+
+      this.message = msg;
+      setTimeout(() => {
+
+        this.message = false
+
+
+      }, 2000);
+
+    },
+    submit() {
+      this.step3Validation();
+
+      if (this.chackeErrors === 0 && !this.loader) {
+        this.loader = true;
+        this.$axios.post('send-mail', {
+            mail: {
+              fromPage: 'Home',
+              name: this.form.name.value,
+              CompanyName: this.form.email.value,
+              WebsiteLink: this.form.wLink.value ? this.form.wLink.value : this.form.wLink.values,
+              SocialLinks: this.form.sLink.value ? this.form.sLink.value : this.form.sLink.values,
+              Referal: this.form.rLink.value,
+              Country: this.form.country.value,
+              BussinesNiche: this.form.bussinesNiche.value,
+              BussinesDescribtion: this.form.description.value,
+              Competitors: this.form.competitor.value ? this.form.competitor.value : this.form.competitor.values,
+              Service: this.form.services.value,
+              TimeFrame: this.form.delivery.value,
+              Budget: this.form.budget.value,
+              Additional: this.form.additional.value
+            }
+          })
+          .then(() => {
+            this.messageSet('Message sent successfully!');
+            this.loader = false;
+            this.resetForm();
+          })
+          .catch(() => {
+            this.messageSet('Somethig went wrong');
+            this.loader = false;
+            this.resetForm();
+          })
+      }
+    },
+    resetForm() {
+      Object.values(this.form).forEach((item) => {
+        item.value = '';
+        if (item.values) {
+          item.values = []
+        }
+      });
+      this.step = 1;
+    },
     openPop() {
 
       if (this.open) {
@@ -309,6 +393,58 @@ export default {
       this.form.competitor.values.splice(index, 1);
 
     },
+    step1Validation() {
+
+      if (this.form.email.value === '') {
+        this.form.email.error = 'Email is required!'
+      } else if (!this.validateEmail(this.form.email.value)) {
+        this.form.email.error = 'Value must be a email!'
+      } else {
+        this.form.email.error = ''
+      }
+      if (!this.form.name.value) {
+        this.form.name.error = 'Name is required!'
+      } else {
+        this.form.name.error = ''
+      }
+
+
+
+    },
+    step2Validation() {
+      if (!this.form.country.value) {
+        this.form.country.error = 'Country name is required!'
+      } else {
+        this.form.country.error = ''
+      }
+      if (!this.form.competitor.value && this.form.competitor.values.length === 0) {
+        this.form.competitor.error = 'Competitor name is required!'
+      } else {
+        this.form.competitor.error = ''
+      }
+      if (!this.form.bussinesNiche.value || this.form.bussinesNiche.value === 'Your Bussines Niche*') {
+        this.form.bussinesNiche.error = 'Bussines Niche is required!'
+      } else {
+        this.form.bussinesNiche.error = ''
+      }
+    },
+    step3Validation() {
+      if (!this.form.budget.value || this.form.budget.value === 'What is the budget for your project?*') {
+        this.form.budget.error = 'Please set budget'
+      } else {
+        this.form.budget.error = ''
+      }
+      if (!this.form.delivery.value || this.form.delivery.value === 'Time-frame for project delivery*') {
+        this.form.delivery.error = 'Please set delivery Time-frame'
+      } else {
+        this.form.delivery.error = ''
+      }
+      if (!this.form.services.value || this.form.services.value === 'Service that you require*') {
+        this.form.services.error = 'Please choose service'
+      } else {
+        this.form.services.error = ''
+      }
+    },
     validation(fild) {
 
       if (fild === 'email') {
@@ -325,11 +461,23 @@ export default {
         } else {
           this.form.message.error = ''
         }
-      } else {
+      } else if (fild === 'name') {
         if (!this.form.name.value) {
           this.form.name.error = 'Name is required!'
         } else {
           this.form.name.error = ''
+        }
+      } else if (fild === 'country') {
+        if (!this.form.country.value) {
+          this.form.country.error = 'Country name is required!'
+        } else {
+          this.form.country.error = ''
+        }
+      } else if (fild === 'competitor') {
+        if (!this.form.competitor.value && this.form.competitor.values.length === 0) {
+          this.form.competitor.error = 'Competitor name is required!'
+        } else {
+          this.form.competitor.error = ''
         }
       }
     },
