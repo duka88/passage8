@@ -1,7 +1,7 @@
 <template>
   <div class="services-template">
     <div class="header">
-      <main-nav />
+      <main-nav page="design" />
       <div class="wrap title-wrap">
         <div class="text-wrap">
           <h2 id="title">Graphic Design<span class="text-red">.</span></h2>

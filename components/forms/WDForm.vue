@@ -7,9 +7,9 @@
           <i @click="openPop()" class="fas fa-times close"></i>
           <h3>GET A QUOTE<span class="text-red">.</span></h3>
           <div class="info-wrap">
-            <p :class="[step >= 1 ? 'done' : '']">Personal Information</p>
-            <p :class="[step >= 2 ? 'done' : '']">Your Bussines</p>
-            <p :class="[step === 3 ? 'done' : '']">Servises</p>
+            <p :class="[step >= 1 ? 'done' : '']">General Information</p>
+            <p :class="[step >= 2 ? 'done' : '']">Tehnical details</p>
+            <p :class="[step === 3 ? 'done' : '']">Aditional information</p>
           </div>
           <div class="border" :class="{width33: step === 1, width66: step === 2, width100: step === 3}"></div>
           <form>
@@ -30,65 +30,33 @@
                   <span class="error">{{form.cName.error}}</span>
                 </div>
                 <div class="input-wrap-50">
-                  <i @click="pushWLinks()" v-if="form.wLink.values.length < 3 && form.wLink.value" class="fas fa-plus"></i>
-                  <input v-model="form.wLink.value" type="text" placeholder="Link to your website" :disabled="form.wLink.values.length >= 3">
-                  <div class="link-count">
-                    <span v-if="form.wLink.values.length > 0" @click="form.wLink.list = !form.wLink.list">
-                      {{form.wLink.values.length}} link(s) added <i class="fas fa-chevron-down" aria-hidden="true"></i></span>
-                  </div>
-                  <div class="link-list" v-if="form.wLink.list">
-                    <span v-for="(value, index) in form.wLink.values" :key="index" class="error">{{value}}
-                      <i @click="removeWLink(index)" class="fas fa-times"></i></span>
-                  </div>
-                </div>
-                <div class="input-wrap-50">
-                  <i @click="pushSLinks()" v-if="form.sLink.values.length < 3 && form.sLink.value" class="fas fa-plus"></i>
-                  <input v-model="form.sLink.value" type="text" placeholder="Link to social networks" :disabled="form.sLink.values.length >= 3">
-                  <div class="link-count">
-                    <span v-if="form.sLink.values.length > 0" @click="form.sLink.list = !form.sLink.list">
-                      {{form.sLink.values.length}} link(s) added <i class="fas fa-chevron-down" aria-hidden="true"></i></span>
-                  </div>
-                  <div class="link-list" v-if="form.sLink.list">
-                    <span v-for="(value, index) in form.sLink.values" :key="index" class="error">{{value}}
-                      <i @click="removeSLinks(index)" class="fas fa-times"></i></span>
-                  </div>
-                </div>
-                <div class="input-wrap-100 ">
-                  <label for="">How’d you discover our services?</label>
-                </div>
-                <div class="checkboxes">
-                  <div v-for="(value, index) in form.rLink.options" class="input-wrap-50" v-if="form.rLink.text !== value">
-                    <span @click="relateCheck(index, value)" class="checkbox">
-                      <i v-if="form.rLink.index === index" class="fas fa-check"></i>
-                    </span><span>{{value}}</span>
-                  </div>
-                  <div v-else class="input-wrap-50">
-                    <input v-model="form.rLink.value" type="text" placeholder="Other">
-                    <span class="error">{{form.rLink.error}}</span>
-                  </div>
+                  <input v-model="form.country.value" type="text" placeholder="Country*" @blur="focusOut('country')" @focus="form.country.error = ''">
+                  <span class="error">{{form.country.error}}</span>
                 </div>
               </div>
               <!-------STEP 2---------->
               <div v-if="step === 2 " class="step-wrap" key="step2">
-                <div class="input-wrap-50">
-                  <input v-model="form.country.value" type="text" placeholder="Country*" @blur="focusOut('country')" @focus="form.country.error = ''">
-                  <span class="error">{{form.country.error}}</span>
+                <div class="input-wrap-100 ">
+                  <label for="">Do you have a registered domain?</label>
                 </div>
-                <div class="input-wrap-50">
-                  <div class="select" v-if="!form.bussinesNiche.text">
-                    <p class="selected" @click="form.bussinesNiche.open = !form.bussinesNiche.open">
-                      {{form.bussinesNiche.value}}
-                      <i class="fas fa-chevron-down"></i></p>
-                    <div v-if="form.bussinesNiche.open" class="options">
-                      <p v-for="option in form.bussinesNiche.options" class="option" @click="setBussinesNiche(option)">{{option}}</p>
-                    </div>
+                <div class="checkboxes">
+                  <div v-for="(value, index) in form.rDomani.options" class="input-wrap-50" v-if="form.rDomani.text !== value">
+                    <span @click="domaniCheck(index, value)" class="checkbox">
+                      <i v-if="form.rDomani.index === index" class="fas fa-check"></i>
+                    </span><span>{{value}}</span>
                   </div>
-                  <input v-else v-model="form.bussinesNiche.value" type="text" placeholder="Other*">
-                  <span class="error">{{form.bussinesNiche.error}}</span>
+                  <div v-else class="input-wrap-50">
+                    <input v-model="form.rDomani.value" type="text" placeholder="Enter domain name*" @focus="form.rDomani.error = ''">
+                  </div>
+                  <span class="error">{{form.rDomani.error}}</span>
                 </div>
-                <div class="input-wrap-100 focus">
-                  <textarea v-model="form.description.value" maxlength="150" rows="5" placeholder="Describe your bussines in short"></textarea>
-                  <span class="error">{{form.description.error}}</span>
+                <div class="input-wrap-50 ">
+                  <input v-model="form.customer.value" type="text" placeholder="Who is your ideal customer?*" @blur="focusOut('customer')" @focus="form.customer.error = ''">
+                  <span class="error">{{form.customer.error}}</span>
+                </div>
+                <div class="input-wrap-50 ">
+                  <input v-model="form.goal.value" type="text" placeholder="Who is the goal you want to achive?">
+                  <span class="error">{{form.goal.error}}</span>
                 </div>
                 <div class="input-wrap-50">
                   <i @click="pushCompetitor()" v-if="form.competitor.values.length < 3 && form.competitor.value" class="fas fa-plus"></i>
@@ -103,19 +71,46 @@
                       <i @click="removeCompetitor(index)" class="fas fa-times"></i></span>
                   </div>
                 </div>
+                <div class="input-wrap-50">
+                  <i @click="pushLanguage()" v-if="form.languages.values.length < 5 && form.languages.value" class="fas fa-plus"></i>
+                  <input v-model="form.languages.value" type="text" placeholder="Language(s)*" :disabled="form.languages.values.length >= 5" @blur="focusOut('language')" @focus="form.languages.error = ''">
+                  <span class="error">{{form.languages.error}}</span>
+                  <div class="link-count">
+                    <span v-if="form.languages.values.length > 0" @click="form.languages.list = !form.languages.list">
+                      {{form.languages.values.length}} link(s) added <i class="fas fa-chevron-down" aria-hidden="true"></i></span>
+                  </div>
+                  <div class="link-list" v-if="form.languages.list">
+                    <span v-for="(value, index) in form.languages.values" :key="index" class="error">{{value}}
+                      <i @click="removeLanguage(index)" class="fas fa-times"></i></span>
+                  </div>
+                </div>
+                <div class="input-wrap-100 ">
+                  <label for="">Will the website sell products?</label>
+                </div>
+                <div class="checkboxes">
+                  <div v-for="(value, index) in form.product.options" class="input-wrap-50" v-if="form.product.text !== value">
+                    <span @click="productCheck(index, value)" class="checkbox">
+                      <i v-if="form.product.index === index" class="fas fa-check"></i>
+                    </span><span>{{value}}</span>
+                  </div>
+                  <div v-else class="input-wrap-50">
+                    <input v-model="form.product.value" type="number" placeholder="Num of products*" min="1">
+                  </div>
+                  <span class="error">{{form.product.error}}</span>
+                </div>
               </div>
               <!-------STEP 3---------->
               <div v-if="step === 3 " class="step-wrap step-3" key="step3">
-                <div class="input-wrap-50">
-                  <div class="select">
-                    <p class="selected" @click="form.services.open = !form.services.open">
-                      {{form.services.value}}
-                      <i class="fas fa-chevron-down"></i></p>
-                    <div v-if="form.services.open" class="options">
-                      <p v-for="option in form.services.options" class="option" @click="setServices(option)">{{option}}</p>
-                    </div>
+                <div class="input-wrap-100 ">
+                  <label for="">Do you have content(images, text, ect)?</label>
+                </div>
+                <div class="checkboxes">
+                  <div v-for="(value, index) in form.content.options" class="input-wrap-50">
+                    <span @click="contentCheck(index, value)" class="checkbox">
+                      <i v-if="form.content.index === index" class="fas fa-check"></i>
+                    </span><span>{{value}}</span>
                   </div>
-                  <span class="error">{{form.services.error}}</span>
+                  <span class="error">{{form.content.error}}</span>
                 </div>
                 <div class="input-wrap-50">
                   <div class="select">
@@ -156,7 +151,6 @@
             <div v-if="step === 3" @click="submit()" class="red-btn" :class="{unactiv: chackeErrors}">
               <div v-if="loader" class="loader">Loading...</div>
               <p v-if="!loader">SUBMIT</p>
-              
             </div>
           </div>
         </div>
@@ -165,9 +159,8 @@
   </div>
 </template>
 <script>
-
 export default {
- name: 'GetQoute',
+  name: 'WDForm',
   data() {
     return {
       step: 1,
@@ -187,38 +180,41 @@ export default {
           value: '',
           error: ''
         },
+        country: {
+          value: '',
+          error: ''
+        },
         wLink: {
           value: '',
           error: '',
           values: [],
           list: false
         },
-        sLink: {
+        rDomani: {
           value: '',
           error: '',
-          values: [],
-          list: false
-        },
-        rLink: {
-          value: '',
-          error: '',
-          options: ['I Was Referred By A Friend', 'I Found You On Social Network', 'Google search', 'Other'],
+          options: ['Yes', 'No'],
           index: '',
           text: false,
-
         },
-        country: {
+        product: {
+          value: '',
+          error: '',
+          options: ['Yes', 'No'],
+          index: '',
+          text: false,
+        },
+        content: {
+          value: '',
+          error: '',
+          options: ['Yes', 'No'],
+          index: ''
+        },
+        customer: {
           value: '',
           error: ''
         },
-        bussinesNiche: {
-          options: ['Healtcare', 'Politics', 'Music', 'Education', 'Agroculture', 'IT', 'Non Profital', 'Ecology', 'Other'],
-          value: 'Your Bussines Niche*',
-          error: '',
-          open: false,
-          text: false
-        },
-        description: {
+        goal: {
           value: '',
           error: ''
         },
@@ -228,11 +224,11 @@ export default {
           values: [],
           list: false
         },
-        services: {
-          options: ['Web development', 'SEO', 'Social Media Marketing', 'Pay Per Click', 'Design', 'Link Building'],
-          value: 'Service that you require*',
+        languages: {
+          value: '',
           error: '',
-          open: false
+          values: [],
+          list: false
         },
         delivery: {
           options: ['1 month', 'Minimum 3 months', 'Minimum 6 months', '1+ year'],
@@ -255,8 +251,8 @@ export default {
   },
   methods: {
     nextStep() {
-     
-      if (this.step === 1) {
+
+      if (this.step === 1 || this.step === 2) {
         this.step1Validation();
 
       } else {
@@ -285,21 +281,21 @@ export default {
         this.loader = true;
         this.$axios.post('send-mail', {
             mail: {
-              fromPage: 'Home',
+              fromPage: 'Web Development',
               Name: this.form.name.value,
               Email: this.form.email.value,
               CompanyName: this.form.cName.value,
-              WebsiteLink: this.form.wLink.value ? this.form.wLink.value : this.form.wLink.values,
-              SocialLinks: this.form.sLink.value ? this.form.sLink.value : this.form.sLink.values,
-              Referal: this.form.rLink.value,
               Country: this.form.country.value,
-              BussinesNiche: this.form.bussinesNiche.value,
-              BussinesDescribtion: this.form.description.value,
+              Domain: this.form.rDomani.value,
+              Customer: this.form.customer.value,
+              Goals:  this.form.goal.value,
               Competitors: this.form.competitor.value ? this.form.competitor.value : this.form.competitor.values,
-              Service: this.form.services.value,
+              Language:  this.form.languages.value ? this.form.languages.value : this.form.languages.values,           
+              Content: this.form.content.value,
               TimeFrame: this.form.delivery.value,
               Budget: this.form.budget.value,
-              Additional: this.form.additional.value
+              Additional: this.form.additional.value         
+              
             }
           })
           .then(() => {
@@ -334,19 +330,7 @@ export default {
       }
 
     },
-    setBussinesNiche(value) {
-      this.form.bussinesNiche.value = value;
-      this.form.bussinesNiche.open = false;
 
-      if (value === 'Other') {
-        this.form.bussinesNiche.text = true;
-      }
-
-    },
-    setServices(value) {
-      this.form.services.value = value;
-      this.form.services.open = false;
-    },
     setDelivery(value) {
       this.form.delivery.value = value;
       this.form.delivery.open = false;
@@ -355,26 +339,35 @@ export default {
       this.form.budget.value = value;
       this.form.budget.open = false;
     },
-    relateCheck(index, input) {
-      this.form.rLink.index = index;
-      this.form.rLink.value = input;
-      if (this.form.rLink.value === 'Other') {
-        this.form.rLink.text = 'Other';
-        this.form.rLink.value = '';
+    domaniCheck(index, input) {
+      this.form.rDomani.index = index;
+      this.form.rDomani.value = input;
+      if (this.form.rDomani.value === 'Yes') {
+        this.form.rDomani.text = 'Yes';
+        this.form.rDomani.value = '';
       } else {
-        this.form.rLink.text = false;
+        this.form.rDomani.text = false;
       }
+      this.form.rDomani.error = '';
+    },
+    contentCheck(index, input) {
+      this.form.content.index = index;
+      this.form.content.value = input;
+      this.form.content.error = '';
+    },
+    productCheck(index, input) {
+      this.form.product.index = index;
+      this.form.product.value = input;
+      if (this.form.product.value === 'Yes') {
+        this.form.product.text = 'Yes';
+        this.form.product.value = '';
+      } else {
+        this.form.product.text = false;
+      }
+      this.form.product.error = '';
     },
     focusOut(fild) {
       this.validation(fild)
-    },
-    pushSLinks() {
-      this.form.sLink.values.push(this.form.sLink.value);
-      this.form.sLink.value = '';
-    },
-    removeSLinks(index) {
-      this.form.sLink.values.splice(index, 1);
-
     },
     pushWLinks() {
       this.form.wLink.values.push(this.form.wLink.value);
@@ -392,6 +385,14 @@ export default {
       this.form.competitor.values.splice(index, 1);
 
     },
+    pushLanguage() {
+      this.form.languages.values.push(this.form.languages.value);
+      this.form.languages.value = '';
+    },
+    removeLanguage(index) {
+      this.form.languages.values.splice(index, 1);
+
+    },
     step1Validation() {
 
       if (this.form.email.value === '') {
@@ -406,43 +407,58 @@ export default {
       } else {
         this.form.name.error = ''
       }
-
-
-
-    },
-    step2Validation() {
       if (!this.form.country.value) {
         this.form.country.error = 'Country name is required!'
       } else {
         this.form.country.error = ''
+      }
+
+
+    },
+    step2Validation() {
+      if (!this.form.rDomani.value) {
+        this.form.rDomani.error = 'This fied is required!'
+      } else {
+        this.form.rDomani.error = ''
       }
       if (!this.form.competitor.value && this.form.competitor.values.length === 0) {
         this.form.competitor.error = 'Competitor name is required!'
       } else {
         this.form.competitor.error = ''
       }
-      if (!this.form.bussinesNiche.value || this.form.bussinesNiche.value === 'Your Bussines Niche*') {
-        this.form.bussinesNiche.error = 'Bussines Niche is required!'
+
+      if (!this.form.languages.value && this.form.languages.values.length === 0) {
+        this.form.languages.error = 'Enter at least one language!'
       } else {
-        this.form.bussinesNiche.error = ''
+        this.form.languages.error = ''
       }
+
+      if (!this.form.product.value) {
+        this.form.product.error = 'This fied is required!'
+      } else if (this.form.product.value < 1) {
+        this.form.product.error = 'Product number must be greater than 0!'
+      } else {
+        this.form.product.error = ''
+      }
+
     },
     step3Validation() {
       if (!this.form.budget.value || this.form.budget.value === 'What is the budget for your project?*') {
-        this.form.budget.error = 'Please set budget'
+        this.form.budget.error = 'Please set budget!'
       } else {
         this.form.budget.error = ''
       }
       if (!this.form.delivery.value || this.form.delivery.value === 'Time-frame for project delivery*') {
-        this.form.delivery.error = 'Please set delivery Time-frame'
+        this.form.delivery.error = 'Please set delivery Time-frame!'
       } else {
         this.form.delivery.error = ''
       }
-      if (!this.form.services.value || this.form.services.value === 'Service that you require*') {
-        this.form.services.error = 'Please choose service'
+      if (!this.form.content.value) {
+        this.form.content.error = 'This fild is required!'
       } else {
-        this.form.services.error = ''
+        this.form.content.error = ''
       }
+
     },
     validation(fild) {
 
@@ -454,29 +470,29 @@ export default {
         } else {
           this.form.email.error = ''
         }
-      } else if (fild === 'message') {
-        if (!this.form.message.value) {
-          this.form.message.error = 'Message is required!'
-        } else {
-          this.form.message.error = ''
-        }
       } else if (fild === 'name') {
         if (!this.form.name.value) {
           this.form.name.error = 'Name is required!'
         } else {
           this.form.name.error = ''
         }
-      } else if (fild === 'country') {
-        if (!this.form.country.value) {
-          this.form.country.error = 'Country name is required!'
+      } else if (fild === 'customer') {
+        if (!this.form.customer.value) {
+          this.form.customer.error = 'Customer name is required!'
         } else {
-          this.form.country.error = ''
+          this.form.customer.error = ''
         }
       } else if (fild === 'competitor') {
         if (!this.form.competitor.value && this.form.competitor.values.length === 0) {
           this.form.competitor.error = 'Competitor name is required!'
         } else {
           this.form.competitor.error = ''
+        }
+      } else if (fild === 'language') {
+        if (!this.form.languages.value && this.form.languages.values.length === 0) {
+          this.form.languages.error = 'Enter at least one language!'
+        } else {
+          this.form.languages.error = ''
         }
       }
     },
