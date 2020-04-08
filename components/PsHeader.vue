@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <main-nav />
+    <main-nav page="home"/>
     <div class="wrap">
       <div class="text-wrap">
         <p id="title">Your Digital Solution  </p>

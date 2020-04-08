@@ -41,7 +41,11 @@
           <nuxt-link to='/contact'>CONTACT US</nuxt-link>
         </li>
         <li>
-          <get-qoute />
+          <get-qoute v-if="page === 'home'" />
+          <seo-form v-if="page === 'seo'" />
+          <w-d-form v-if="page === 'web_dev'"/>
+          <design-form v-if="page === 'design'"/>
+         
         </li>
       </ul>
     </div>
@@ -97,11 +101,18 @@
 </template>
 <script>
 import GetQoute from '@/components/forms/GetQoute.vue';
+import SeoForm from '@/components/forms/SeoForm.vue';
+import WDForm from '@/components/forms/WDForm.vue';
+import DesignForm from '@/components/forms/DesignForm.vue';
 import { mapState } from 'vuex';
 export default {
   name: 'MainNav',
+  props: ['page'],
   components: {
-    GetQoute
+    GetQoute,
+    SeoForm,
+    WDForm,
+    DesignForm
   },
   data() {
     return {
