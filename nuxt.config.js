@@ -67,7 +67,7 @@ export default {
     }
   },
     axios:{
-     baseURL: 'http://cms.test/api/'
+     baseURL: 'http://3.8.30.34/api/'
   },
 
 }
