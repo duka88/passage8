@@ -23,7 +23,7 @@ export const mutations = {
 export const actions = {
 
   async getPosts({ commit }) {
-    let response = await this.$axios.get('http://cms.test/api/posts');
+    let response = await this.$axios.get('posts');
     let posts = response.data.data;
 
     commit('SET_POSTS', posts);
@@ -31,7 +31,7 @@ export const actions = {
 
   async getPost({ commit }, { postSlug }) {
 
-    let response = await this.$axios.get(`http://cms.test/api/post/${postSlug}`)
+    let response = await this.$axios.get(`post/${postSlug}`)
     let post = response.data.data;
 
      commit('SET_POST', post);
