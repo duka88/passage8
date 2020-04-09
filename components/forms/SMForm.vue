@@ -56,17 +56,27 @@
               </div>
               <!-------STEP 2---------->
               <div v-if="step === 2 " class="step-wrap" key="step2">
-                <div class="input-wrap-100 ">
-                  <label for="">I need</label>
-                </div>
-                <div class="checkboxes">
-                  <div v-for="value in form.needs.options" class="input-wrap-50" >
-                    <span @click="needsCheck(value)" class="checkbox">
-                      <i v-if="form.needs.value.includes(value)" class="fas fa-check"></i>
-                    </span><span>{{value}}</span>
+                <div class="input-wrap-50">
+                  <div class="select">
+                    <p class="selected" @click="form.goal.open = !form.goal.open">
+                      {{form.goal.value}}
+                      <i class="fas fa-chevron-down"></i></p>
+                    <div v-if="form.goal.open" class="options">
+                      <p v-for="option in form.goal.options" class="option" @click="setGoal(option)">{{option}}</p>
+                    </div>
                   </div>
-                
-                  <span class="error">{{form.needs.error}}</span>
+                  <span class="error">{{form.goal.error}}</span>
+                </div>
+                <div class="input-wrap-50">
+                  <div class="select">
+                    <p class="selected" @click="form.socialPref.open = !form.socialPref.open">
+                      {{form.socialPref.value}}
+                      <i class="fas fa-chevron-down"></i></p>
+                    <div v-if="form.socialPref.open" class="options">
+                      <p v-for="option in form.socialPref.options" class="option" @click="setSocialPref(option)">{{option}}</p>
+                    </div>
+                  </div>
+                  <span class="error">{{form.socialPref.error}}</span>
                 </div>
                 <div class="input-wrap-50">
                   <div class="select" v-if="!form.bussinesNiche.text">
@@ -84,28 +94,9 @@
                   <textarea v-model="form.description.value" maxlength="150" rows="5" placeholder="Describe your bussines in short"></textarea>
                   <span class="error">{{form.description.error}}</span>
                 </div>
-                <div class="input-wrap-50 ">
-                  <input v-model="form.goal.value" type="text" placeholder="Who is the goal you want to achive?">
-                  <span class="error">{{form.goal.error}}</span>
-                </div>
-                <div class="input-wrap-50">
-                  <i @click="pushCompetitor()" v-if="form.competitor.values.length < 3 && form.competitor.value" class="fas fa-plus"></i>
-                  <input v-model="form.competitor.value" type="text" placeholder="Your main competitors*" :disabled="form.competitor.values.length >= 3" @blur="focusOut('competitor')" @focus="form.competitor.error = ''">
-                  <span class="error">{{form.competitor.error}}</span>
-                  <div class="link-count">
-                    <span v-if="form.competitor.values.length > 0" @click="form.competitor.list = !form.competitor.list">
-                      {{form.competitor.values.length}} link(s) added <i class="fas fa-chevron-down" aria-hidden="true"></i></span>
-                  </div>
-                  <div class="link-list" v-if="form.competitor.list">
-                    <span v-for="(value, index) in form.competitor.values" :key="index" class="error">{{value}}
-                      <i @click="removeCompetitor(index)" class="fas fa-times"></i></span>
-                  </div>
-                </div>
               </div>
               <!-------STEP 3---------->
               <div v-if="step === 3 " class="step-wrap step-3" key="step3">
-           
-               
                 <div class="input-wrap-50">
                   <div class="select">
                     <p class="selected" @click="form.budget.open = !form.budget.open">
@@ -116,6 +107,17 @@
                     </div>
                   </div>
                   <span class="error">{{form.budget.error}}</span>
+                </div>
+                <div class="input-wrap-50">
+                  <div class="select">
+                    <p class="selected" @click="form.delivery.open = !form.delivery.open">
+                      {{form.delivery.value}}
+                      <i class="fas fa-chevron-down"></i></p>
+                    <div v-if="form.delivery.open" class="options">
+                      <p v-for="option in form.delivery.options" class="option" @click="setDelivery(option)">{{option}}</p>
+                    </div>
+                  </div>
+                  <span class="error">{{form.delivery.error}}</span>
                 </div>
                 <div class="input-wrap-100 ">
                   <textarea v-model="form.additional.value" maxlength="150" rows="5" placeholder="Anything we missed out?"></textarea>
@@ -143,7 +145,7 @@
 </template>
 <script>
 export default {
-  name: 'DesignForm',
+  name: 'SMForm',
   data() {
     return {
       step: 1,
@@ -176,8 +178,16 @@ export default {
           list: false
         },
         goal: {
-          value: '',
-          error: ''
+          options: ['More followers', 'More engagement', 'Generate Revenue', 'Build Brand Awareness'],
+          value: 'What is your goal?',
+          error: '',
+          open: false
+        },
+        socialPref: {
+          options: ['Facebook', 'Instagram', 'LinkedIn', 'Pinterest'],
+          value: 'Prefered Social Media Network?',
+          error: '',
+          open: false
         },
         bussinesNiche: {
           options: ['Healtcare', 'Politics', 'Music', 'Education', 'Agroculture', 'IT', 'Non Profital', 'Ecology', 'Other'],
@@ -186,21 +196,17 @@ export default {
           open: false,
           text: false
         },
-        needs: {
-          options: ['Logo Design', 'Landing Page Design', 'Graphic design', 'Website Wireframe', 'Website Mockup Design'],
-          value: [],
-          error: ''        
+        delivery: {
+          options: ['1 month', 'Minimum 3 months', 'Minimum 6 months', '1+ year'],
+          value: 'Time-frame for project delivery*',
+          error: '',
+          open: false
         },
         description: {
           value: '',
           error: ''
         },
-        competitor: {
-          value: '',
-          error: '',
-          values: [],
-          list: false
-        },        
+
         budget: {
           options: ['< 1000$', '1000$ - 5000$', '5000$ - 10000$', '10000$ <'],
           value: 'What is the budget for your project?*',
@@ -246,16 +252,17 @@ export default {
         this.loader = true;
         this.$axios.post('send-mail', {
             mail: {
-              fromPage: 'Design',
+              fromPage: 'Social Media',
               Name: this.form.name.value,
               Email: this.form.email.value,
               CompanyName: this.form.cName.value,
               WebsiteLink: this.form.wLink.value ? this.form.wLink.value : this.form.wLink.values,
               SocialLinks: this.form.sLink.value ? this.form.sLink.value : this.form.sLink.values,
-              BussinesNiche: this.form.bussinesNiche.value,             
+              BussinesNiche: this.form.bussinesNiche.value,
               BussinesDescribtion: this.form.description.value,
-              Competitors: this.form.competitor.value ? this.form.competitor.value : this.form.competitor.values,
-              Needs: this.form.needs.value,             
+              SocialMediaPreferencs: this.form.socialPref.value,
+              Goal: this.form.goal.value,
+              Delivery: this.form.delivery.value,
               Budget: this.form.budget.value,
               Additional: this.form.additional.value
             }
@@ -301,17 +308,18 @@ export default {
       }
 
     },
-   needsCheck(value) {
-   
-    if(this.form.needs.value.includes(value)){
-        let i = this.form.needs.value.indexOf(value);
-        this.form.needs.value.splice(i, 1);
-    }else{
-      this.form.needs.value.push(value);
-    }
-   
-    
-    }, 
+    setDelivery(value) {
+      this.form.delivery.value = value;
+      this.form.delivery.open = false;
+    },
+    setGoal(value) {
+      this.form.goal.value = value;
+      this.form.goal.open = false;
+    },
+    setSocialPref(value) {
+      this.form.socialPref.value = value;
+      this.form.socialPref.open = false;
+    },
     setBudget(value) {
       this.form.budget.value = value;
       this.form.budget.open = false;
@@ -335,14 +343,6 @@ export default {
       this.form.wLink.values.splice(index, 1);
 
     },
-    pushCompetitor() {
-      this.form.competitor.values.push(this.form.competitor.value);
-      this.form.competitor.value = '';
-    },
-    removeCompetitor(index) {
-      this.form.competitor.values.splice(index, 1);
-
-    },
     step1Validation() {
 
       if (this.form.email.value === '') {
@@ -362,15 +362,15 @@ export default {
 
     },
     step2Validation() {
-      if (this.form.needs.value.length < 1) {
-        this.form.needs.error = 'Select at least one option!'
+      if (this.form.goal.value === "What is your goal?") {
+        this.form.goal.error = 'Pleas select you goal!'
       } else {
-        this.form.needs.error = ''
+        this.form.goal.error = ''
       }
-      if (!this.form.competitor.value && this.form.competitor.values.length === 0) {
-        this.form.competitor.error = 'Competitor name is required!'
+      if (this.form.socialPref.value === "Prefered Social Media Network?") {
+        this.form.socialPref.error = 'Pleas select you social prefrence!'
       } else {
-        this.form.competitor.error = ''
+        this.form.socialPref.error = ''
       }
       if (!this.form.bussinesNiche.value || this.form.bussinesNiche.value === 'Your Bussines Niche*') {
         this.form.bussinesNiche.error = 'Bussines Niche is required!'
@@ -384,7 +384,12 @@ export default {
       } else {
         this.form.budget.error = ''
       }
-      
+      if (!this.form.delivery.value || this.form.delivery.value === 'Time-frame for project delivery*') {
+        this.form.delivery.error = 'Please set delivery Time-frame'
+      } else {
+        this.form.delivery.error = ''
+      }
+
     },
     validation(fild) {
 
@@ -396,13 +401,13 @@ export default {
         } else {
           this.form.email.error = ''
         }
-      }  else if (fild === 'name') {
+      } else if (fild === 'name') {
         if (!this.form.name.value) {
           this.form.name.error = 'Name is required!'
         } else {
           this.form.name.error = ''
         }
-      }else if (fild === 'competitor') {
+      } else if (fild === 'competitor') {
         if (!this.form.competitor.value && this.form.competitor.values.length === 0) {
           this.form.competitor.error = 'Competitor name is required!'
         } else {

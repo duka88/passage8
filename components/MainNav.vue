@@ -45,7 +45,8 @@
           <seo-form v-if="page === 'seo'" />
           <w-d-form v-if="page === 'web_dev'"/>
           <design-form v-if="page === 'design'"/>
-         
+          <s-m-form v-if="page === 's_media'"/>
+          <ppc-form v-if="page === 'ppc'"/>
         </li>
       </ul>
     </div>
@@ -104,6 +105,8 @@ import GetQoute from '@/components/forms/GetQoute.vue';
 import SeoForm from '@/components/forms/SeoForm.vue';
 import WDForm from '@/components/forms/WDForm.vue';
 import DesignForm from '@/components/forms/DesignForm.vue';
+import SMForm from '@/components/forms/SMForm.vue';
+import PpcForm from '@/components/forms/PpcForm.vue';
 import { mapState } from 'vuex';
 export default {
   name: 'MainNav',
@@ -112,7 +115,9 @@ export default {
     GetQoute,
     SeoForm,
     WDForm,
-    DesignForm
+    DesignForm,
+    SMForm,
+    PpcForm
   },
   data() {
     return {
