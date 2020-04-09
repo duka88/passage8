@@ -90,7 +90,7 @@
                   <input v-else v-model="form.bussinesNiche.value" type="text" placeholder="Other*">
                   <span class="error">{{form.bussinesNiche.error}}</span>
                 </div>
-                <div class="input-wrap-100 focus">
+                <div class="input-wrap-100 focus row-span-2">
                   <textarea v-model="form.description.value" maxlength="150" rows="5" placeholder="Describe your bussines in short"></textarea>
                   <span class="error">{{form.description.error}}</span>
                 </div>
@@ -135,7 +135,7 @@
             </div>
             <div v-if="step === 3" @click="submit()" class="red-btn" :class="{unactiv: chackeErrors}">
               <div v-if="loader" class="loader">Loading...</div>
-              <p v-if="!loader">SUBMIT</p>
+              <span v-if="!loader">SUBMIT</span>
             </div>
           </div>
         </div>

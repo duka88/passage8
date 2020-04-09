@@ -67,7 +67,7 @@ export default {
     }
   },
     axios:{
-     baseURL: 'http://cms.test/api/'
+     baseURL: 'https://cms.passageeight.com/api/'
   },
 
 }

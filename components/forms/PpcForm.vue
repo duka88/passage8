@@ -68,10 +68,6 @@
                   <input v-else v-model="form.bussinesNiche.value" type="text" placeholder="Other*">
                   <span class="error">{{form.bussinesNiche.error}}</span>
                 </div>
-                <div class="input-wrap-100 focus">
-                  <textarea v-model="form.description.value" maxlength="150" rows="5" placeholder="Describe your bussines in short"></textarea>
-                  <span class="error">{{form.description.error}}</span>
-                </div>
                 <div class="input-wrap-50">
                   <div class="select">
                     <p class="selected" @click="form.goal.open = !form.goal.open">
@@ -83,18 +79,22 @@
                   </div>
                   <span class="error">{{form.goal.error}}</span>
                 </div>
+                <div class="input-wrap-100 focus row-span-2">
+                  <textarea v-model="form.description.value" maxlength="150" rows="5" placeholder="Describe your bussines in short"></textarea>
+                  <span class="error">{{form.description.error}}</span>
+                </div>
                 <div class="input-wrap-100 ">
                   <label for="">Who is your general target?</label>
-                </div>
-                <div class="checkboxes">
-                  <div v-for="(value, index) in form.target.options" class="input-wrap-50">
-                    <span @click="targetCheck(index, value)" class="checkbox">
-                      <i v-if="form.target.index === index" class="fas fa-check"></i>
-                    </span><span>{{value}}</span>
+                  <div class="checkboxes">
+                    <div v-for="(value, index) in form.target.options" class="input-wrap-50">
+                      <span @click="targetCheck(index, value)" class="checkbox">
+                        <i v-if="form.target.index === index" class="fas fa-check"></i>
+                      </span><span>{{value}}</span>
+                    </div>
+                    <span class="error">{{form.target.error}}</span>
                   </div>
-                  <span class="error">{{form.target.error}}</span>
                 </div>
-                <div class="input-wrap-100 focus">
+                <div class="input-wrap-100 focus row-span-2">
                   <textarea v-model="form.distinguishes.value" maxlength="150" rows="5" placeholder="What distinguishes you from your competitors?"></textarea>
                   <span class="error">{{form.distinguishes.error}}</span>
                 </div>
@@ -139,7 +139,7 @@
             </div>
             <div v-if="step === 3" @click="submit()" class="red-btn" :class="{unactiv: chackeErrors}">
               <div v-if="loader" class="loader">Loading...</div>
-              <p v-if="!loader">SUBMIT</p>
+              <span v-if="!loader">SUBMIT</span>
             </div>
           </div>
         </div>

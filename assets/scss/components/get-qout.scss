@@ -32,7 +32,8 @@
         color: $dark-pink;
         font-size: 25px;
         position: absolute;
-        right: 5%;
+        right: 30px;
+        top: 25px;
       }
       form{
         min-height: 430px;
@@ -42,11 +43,10 @@
         @extend .grid;
         grid-column-gap: 35px;
         grid-row-gap: 30px;
-        grid-template-rows: min-content;
+        grid-auto-rows: 66px;
         width: 100%;
         max-width: 1000px;
         margin: 0 auto;
-
       }
 
       h3 {
@@ -63,6 +63,9 @@
           height: 66px;
         }
       }
+      .row-span-2{
+        grid-row: span 2;
+      }
       .checkboxes{
         @extend .grid;
         grid-column: span 12;
@@ -74,13 +77,13 @@
           align-items: center;
         }
       }
-
+/*
       .step-3{
         .checkboxes{
           grid-template-rows: 30px 28px 1fr 1fr 1fr;
         }
       }
-
+*/
       .link-count{
           position: absolute;
           top: 50px;
@@ -182,6 +185,11 @@
       margin: 0;
       color: $white;
       @extend .flex-center;
+      
+      .loader {
+        width: 16px;
+        height: 16px;
+      }
 
     }
   }

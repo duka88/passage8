@@ -53,18 +53,18 @@
                       <i @click="removeSLinks(index)" class="fas fa-times"></i></span>
                   </div>
                 </div>
-                <div class="input-wrap-100 ">
+                <div class="input-wrap-100 row-span-2">
                   <label for="">How’d you discover our services?</label>
-                </div>
-                <div class="checkboxes">
-                  <div v-for="(value, index) in form.rLink.options" class="input-wrap-50" v-if="form.rLink.text !== value">
-                    <span @click="relateCheck(index, value)" class="checkbox">
-                      <i v-if="form.rLink.index === index" class="fas fa-check"></i>
-                    </span><span>{{value}}</span>
-                  </div>
-                  <div v-else class="input-wrap-50">
-                    <input v-model="form.rLink.value" type="text" placeholder="Other">
-                    <span class="error">{{form.rLink.error}}</span>
+                  <div class="checkboxes">
+                    <div v-for="(value, index) in form.rLink.options" class="input-wrap-50" v-if="form.rLink.text !== value">
+                      <span @click="relateCheck(index, value)" class="checkbox">
+                        <i v-if="form.rLink.index === index" class="fas fa-check"></i>
+                      </span><span>{{value}}</span>
+                    </div>
+                    <div v-else class="input-wrap-50">
+                      <input v-model="form.rLink.value" type="text" placeholder="Other">
+                      <span class="error">{{form.rLink.error}}</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -86,7 +86,7 @@
                   <input v-else v-model="form.bussinesNiche.value" type="text" placeholder="Other*">
                   <span class="error">{{form.bussinesNiche.error}}</span>
                 </div>
-                <div class="input-wrap-100 focus">
+                <div class="input-wrap-100 focus row-span-2">
                   <textarea v-model="form.description.value" maxlength="150" rows="5" placeholder="Describe your bussines in short"></textarea>
                   <span class="error">{{form.description.error}}</span>
                 </div>
@@ -139,7 +139,7 @@
                   </div>
                   <span class="error">{{form.budget.error}}</span>
                 </div>
-                <div class="input-wrap-100 ">
+                <div class="input-wrap-100 row-span-2">
                   <textarea v-model="form.additional.value" maxlength="150" rows="5" placeholder="Anything we missed out?"></textarea>
                   <span class="error">{{form.additional.error}}</span>
                 </div>
@@ -155,7 +155,7 @@
             </div>
             <div v-if="step === 3" @click="submit()" class="red-btn" :class="{unactiv: chackeErrors}">
               <div v-if="loader" class="loader">Loading...</div>
-              <p v-if="!loader">SUBMIT</p>
+              <span v-if="!loader">SUBMIT</span>
               
             </div>
           </div>
