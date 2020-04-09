@@ -36,19 +36,19 @@
               </div>
               <!-------STEP 2---------->
               <div v-if="step === 2 " class="step-wrap" key="step2">
-                <div class="input-wrap-100 ">
+                <div class="input-wrap-100">
                   <label for="">Do you have a registered domain?</label>
-                </div>
-                <div class="checkboxes">
-                  <div v-for="(value, index) in form.rDomani.options" class="input-wrap-50" v-if="form.rDomani.text !== value">
-                    <span @click="domaniCheck(index, value)" class="checkbox">
-                      <i v-if="form.rDomani.index === index" class="fas fa-check"></i>
-                    </span><span>{{value}}</span>
+                  <div class="checkboxes">
+                    <div v-for="(value, index) in form.rDomani.options" class="input-wrap-50" v-if="form.rDomani.text !== value">
+                      <span @click="domaniCheck(index, value)" class="checkbox">
+                        <i v-if="form.rDomani.index === index" class="fas fa-check"></i>
+                      </span><span>{{value}}</span>
+                    </div>
+                    <div v-else class="input-wrap-50">
+                      <input v-model="form.rDomani.value" type="text" placeholder="Enter domain name*" @focus="form.rDomani.error = ''">
+                    </div>
+                    <span class="error">{{form.rDomani.error}}</span>
                   </div>
-                  <div v-else class="input-wrap-50">
-                    <input v-model="form.rDomani.value" type="text" placeholder="Enter domain name*" @focus="form.rDomani.error = ''">
-                  </div>
-                  <span class="error">{{form.rDomani.error}}</span>
                 </div>
                 <div class="input-wrap-50 ">
                   <input v-model="form.customer.value" type="text" placeholder="Who is your ideal customer?*" @blur="focusOut('customer')" @focus="form.customer.error = ''">
@@ -86,31 +86,31 @@
                 </div>
                 <div class="input-wrap-100 ">
                   <label for="">Will the website sell products?</label>
-                </div>
-                <div class="checkboxes">
-                  <div v-for="(value, index) in form.product.options" class="input-wrap-50" v-if="form.product.text !== value">
-                    <span @click="productCheck(index, value)" class="checkbox">
-                      <i v-if="form.product.index === index" class="fas fa-check"></i>
-                    </span><span>{{value}}</span>
+                  <div class="checkboxes">
+                    <div v-for="(value, index) in form.product.options" class="input-wrap-50" v-if="form.product.text !== value">
+                      <span @click="productCheck(index, value)" class="checkbox">
+                        <i v-if="form.product.index === index" class="fas fa-check"></i>
+                      </span><span>{{value}}</span>
+                    </div>
+                    <div v-else class="input-wrap-50">
+                      <input v-model="form.product.value" type="number" placeholder="Num of products*" min="1">
+                    </div>
+                    <span class="error">{{form.product.error}}</span>
                   </div>
-                  <div v-else class="input-wrap-50">
-                    <input v-model="form.product.value" type="number" placeholder="Num of products*" min="1">
-                  </div>
-                  <span class="error">{{form.product.error}}</span>
                 </div>
               </div>
               <!-------STEP 3---------->
               <div v-if="step === 3 " class="step-wrap step-3" key="step3">
                 <div class="input-wrap-100 ">
                   <label for="">Do you have content(images, text, ect)?</label>
-                </div>
-                <div class="checkboxes">
-                  <div v-for="(value, index) in form.content.options" class="input-wrap-50">
-                    <span @click="contentCheck(index, value)" class="checkbox">
-                      <i v-if="form.content.index === index" class="fas fa-check"></i>
-                    </span><span>{{value}}</span>
+                  <div class="checkboxes">
+                    <div v-for="(value, index) in form.content.options" class="input-wrap-50">
+                      <span @click="contentCheck(index, value)" class="checkbox">
+                        <i v-if="form.content.index === index" class="fas fa-check"></i>
+                      </span><span>{{value}}</span>
+                    </div>
+                    <span class="error">{{form.content.error}}</span>
                   </div>
-                  <span class="error">{{form.content.error}}</span>
                 </div>
                 <div class="input-wrap-50">
                   <div class="select">
@@ -134,7 +134,7 @@
                   </div>
                   <span class="error">{{form.budget.error}}</span>
                 </div>
-                <div class="input-wrap-100 ">
+                <div class="input-wrap-100 row-span-2">
                   <textarea v-model="form.additional.value" maxlength="150" rows="5" placeholder="Anything we missed out?"></textarea>
                   <span class="error">{{form.additional.error}}</span>
                 </div>
@@ -150,7 +150,7 @@
             </div>
             <div v-if="step === 3" @click="submit()" class="red-btn" :class="{unactiv: chackeErrors}">
               <div v-if="loader" class="loader">Loading...</div>
-              <p v-if="!loader">SUBMIT</p>
+              <span v-if="!loader">SUBMIT</span>
             </div>
           </div>
         </div>
