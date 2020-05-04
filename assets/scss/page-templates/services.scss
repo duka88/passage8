@@ -66,23 +66,28 @@
   @extend .container-full;
   padding: 70px 30px;
   background: $black-bg;
+  position: relative;
 
   .container {
     max-width: 1200px;
+    z-index: 9;
     position: relative;
 
-    &.fixed {
-      position: fixed;
-      top: 40px;
-      left: 0;
-      right: 0;
-    }
+  }
+
+  .sticky {
+    top: 80px;
+    right: 20%;
+    position: absolute;
+    height: 90%;
+    z-index: 1;
   }
 
   .absolut-img {
-    position: absolute;
+    position: sticky;
     right: 0;
-    top: 0;
+    top: 80px;
+
   }
 
   .devider {

@@ -30,7 +30,7 @@
       </div>
     </div>
     <div id="fixedArea" class="description-section">
-      <div id="fixedCont" class="container ">
+      <div class="sticky">
         <img class="absolut-img" src="@/assets/img/SMM-prati-scroll.png" alt="">
       </div>
       <div class="container">
@@ -128,43 +128,12 @@ export default {
 
     }
   },
-  methods: {
-    isInViewport(elem) {
-       
-      var bounding = elem.getBoundingClientRect();
-        console.log(window.pageYOffset)
-         console.log(bounding.top)
-         console.log(bounding.top >= window.pageYOffset)
-
-
-      return (
-        
-        window.pageYOffset <= bounding.top
-      );
-
-    }
-  },
   computed: {
     ...mapState({
       winWidth: 'winWidth'
     })
-  },
-  mounted() {
-
-    let area = document.getElementById("fixedArea");
-    let target = document.getElementById("fixedCont");
-
-    window.addEventListener('scroll', () => {
-      let lm = this;
-      if (lm.isInViewport(area)) {
-          console.log('ada')
-        target.classList.add('fixed');
-
-      }else{
-         target.classList.remove('fixed');
-      }
-    });
   }
+
 
 };
 
