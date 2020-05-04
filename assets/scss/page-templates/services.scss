@@ -33,6 +33,7 @@
   align-items: center;
   padding: 140px 30px;
   margin: 0 auto;
+  max-width: 1600px;
 
   .services-img {
     width: 100%;
@@ -40,15 +41,21 @@
   }
 
   .text-wrap {
-    max-width: 500px;
+    max-width: unset;
 
     h2,
     p {
       margin: 0;
     }
+
+    p {
+      margin-bottom: 20px;
+    }
   }
 
-
+  img {
+    max-width: 550px;
+  }
 
   .link-contact-wrap {
     margin: 60px 0 0 0;
@@ -62,6 +69,25 @@
 
   .container {
     max-width: 1200px;
+    position: relative;
+
+    &.fixed {
+      position: fixed;
+      top: 40px;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  .absolut-img {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .devider {
+    display: block;
+    height: 80px;
   }
 
   h2,
@@ -77,6 +103,7 @@
     max-width: 850px;
   }
 
+
   h3 {
     font-size: $font * 0.40;
     margin: 70px 0;
@@ -86,14 +113,20 @@
   li {
     display: flex;
     align-items: flex-start;
+    margin-top: 20px;
 
     p {
-      max-width: unset;
       margin: 0px;
     }
 
     .list-style-line {
       margin: 20px 20px 20px 0px;
+    }
+
+    .text-red {
+      color: $main-color;
+      font-size: 25px;
+      margin-bottom: 20px;
     }
   }
 }
@@ -151,27 +184,28 @@
       height: 500px;
       padding: 0 35px;
       box-sizing: border-box;
+    }
 
-      .sekcija1 {
-        padding: 80px 30px;
+    .sekcija1 {
+      padding: 80px 30px;
 
-        .w-50 {
-          display: flex;
-          width: 100%;
-        }
+      .w-50 {
+        display: flex;
+        width: 100%;
+      }
 
-        .services-img {
-          max-width: 500px;
-          margin: 0 auto 40px auto;
-        }
+      .services-img {
+        max-width: 500px;
+        margin: 0 auto 40px auto;
+      }
 
-        .text-wrap {
-          max-width: unset;
+      .text-wrap {
+        max-width: unset;
 
 
-        }
       }
     }
+
   }
 }
 
