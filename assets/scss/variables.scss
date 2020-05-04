@@ -222,6 +222,11 @@ $mb-60: 60px;
   margin-bottom: 20px;
 }
 
+.my-30 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 .my-50 {
   margin: 50px 0px;
 }
@@ -247,6 +252,9 @@ $mb-60: 60px;
 
 .text-red {
   color: $main_color;
+}
+.text-grey {
+  color: $grey;
 }
 .text-bold{
   font-weight: bold;
