@@ -1,22 +1,21 @@
 <template>
   <div class="service-slider">
     <div class="width-50">
-    
-        <div  class="text-area">
-          <div class="head">
-            <h2 >{{show.h}}</h2>
-            <span >{{show.num}}</span>
-          </div>
-          <div class="body">
-            <p>{{show.text}}</p>
-          </div>
-          <div class="s-footer">
-            <div @click="changeText()" class="link-contact-wrap">
-              <img src="@/assets/img/arrow-red.png" alt="">
-            </div>
+      <div class="text-area">
+        <div class="head">         
+          <span>{{show.num}}</span>
+        </div>
+        <div class="body">
+          <nuxt-link :to='show.link'>
+             <h2>{{show.h}}</h2>
+          </nuxt-link>
+        </div>
+        <div class="s-footer">
+          <div @click="changeText()" class="link-contact-wrap">
+            <img src="@/assets/img/arrow-red.png" alt="">
           </div>
         </div>
-    
+      </div>
     </div>
     <div class="width-50 image-wrap">
       <transition name="fade">
@@ -32,70 +31,71 @@ export default {
     return {
       cont: 0,
       show: {
-        id: 0,
-        title: 'SEO Optimization',
-        h: 'SEO',
+        title: 'GRAPHIC DESIGN',
+        h: 'GRAPHIC DESIGN',
         num: '01',
-        img: 'services-1.jpg',
-        text: 'Did you know that Google receives over 63,000 searches per second each day?      Search engine optimization is the best way to make your business stand out from your competition. Our SEO experts use goal-driven strategies to optimize your website and help you show up on the first page of Google.'
+        img: 'graphic-design-slika.jpg',
+        link: '/graphic-design-services'
 
       },
 
       services: [{
-          title: 'SEO Optimization',
-          h: 'SEO',
+          title: 'GRAPHIC DESIGN',
+          h: 'GRAPHIC DESIGN',
           num: '01',
-          img: 'services-1.jpg',
-          text: 'Did you know that Google receives over 63,000 searches per second each day? Search engine optimization is the best way to make your business stand out from your competition. Our SEO experts use goal-driven strategies to optimize your website and help you show up on the first page of Google.'
+          img: 'graphic-design-slika.jpg',
+          link: '/graphic-design-services'
+
         },
         {
           title: 'Web Development',
           h: 'WEB DEV',
           num: '02',
           img: 'services-2.jpg',
-          text: 'Did you know that Google receives over 63,000 searches per second each day? Search engine optimization is the best way to make your business stand out from your competition. Our SEO experts use goal-driven strategies to optimize your website and help you show up on the first page of Google.'
+          link: '/web-development-services'
         },
         {
           title: 'IT Maintenance',
           h: 'IT MAINTENANCE',
           num: '03',
           img: 'services-3.jpg',
-          text: 'Did you know that Google receives over 63,000 searches per second each day? Search engine optimization is the best way to make your business stand out from your competition. Our SEO experts use goal-driven strategies to optimize your website and help you show up on the first page of Google.'
+          link: '/it-maintenance-services'
+         
         },
         {
           title: 'Content Marketing',
           h: 'CONTENT',
           num: '04',
           img: 'services-4.jpg',
-          text: 'Did you know that Google receives over 63,000 searches per second each day? Search engine optimization is the best way to make your business stand out from your competition. Our SEO experts use goal-driven strategies to optimize your website and help you show up on the first page of Google.'
+          link: '/content-marketing-services'
         },
         {
           title: 'Social Media',
           h: 'SOCIAL MEDIA',
           num: '05',
-          img: 'services-5.jpg',
-          text: 'Did you know that Google receives over 63,000 searches per second each day? Search engine optimization is the best way to make your business stand out from your competition. Our SEO experts use goal-driven strategies to optimize your website and help you show up on the first page of Google.'
+          img: 'soc-media-slika.jpg',
+          link: '/social-media-marketing-services'
         },
         {
           title: 'Pay-Per-Click',
           h: 'PPC',
           num: '06',
           img: 'services-6.jpg',
-          text: 'Did you know that Google receives over 63,000 searches per second each day? Search engine optimization is the best way to make your business stand out from your competition. Our SEO experts use goal-driven strategies to optimize your website and help you show up on the first page of Google.'
+          link: '/ppc-management-services'
         },
         {
-          title: 'Graphic Design',
-          h: 'GRAPHIC DESIGN',
+          title: 'SEO',
+          h: 'SEO',
           num: '07',
           img: 'services-7.jpg',
-          text: 'Did you know that Google receives over 63,000 searches per second each day? Search engine optimization is the best way to make your business stand out from your competition. Our SEO experts use goal-driven strategies to optimize your website and help you show up on the first page of Google.'
+          link: '/seo-services'
         },
         {
           title: 'White Label',
           h: 'WHITE LABEL',
           num: '08',
           img: 'services-8.jpg',
-          text: 'Did you know that Google receives over 63,000 searches per second each day? Search engine optimization is the best way to make your business stand out from your competition. Our SEO experts use goal-driven strategies to optimize your website and help you show up on the first page of Google.'
+          link: '/white-label-services'
         },
 
       ]
@@ -114,7 +114,8 @@ export default {
       this.show.num = this.services[this.cont].num;
       this.show.img = this.services[this.cont].img;
       this.show.h = this.services[this.cont].h;
-      this.show.text = this.services[this.cont].text;
+      this.show.link = this.services[this.cont].link;
+      
     }
   },
 };

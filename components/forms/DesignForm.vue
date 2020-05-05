@@ -1,6 +1,6 @@
 <template>
   <div class="get-qout">
-    <p @click="openPop()">GET A QUOTE</p>
+    <p @click="openPop()" class="triger">GET A QUOTE</p>
     <transition name="slide-fade">
       <div v-if="open" class="contact-us-form">
         <div class="form-wrap">
