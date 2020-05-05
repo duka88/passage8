@@ -89,16 +89,14 @@
         </div>
       </div>
     </div>
-    <div class="slider-section">
-      <h2>Lorem ipsum
-        dolor sit amet.
-      </h2>
-      <service-slider v-if="winWidth > 850" />
-      <services-mob v-else />
-      <div class="text-wrap">
-        <div class="border-red"></div>
-        <p>Aliquam erat volutpat. Donec lacinia aliquet pellentesque. Proin quis tortor tempor, luctus nulla vitae, dictum nulla. Integer nec egestas dolor. Ut sit amet rhoncus ante, malesuada commodo nulla. Maecenas eget nisi erat. Donec gravida, tellus id sagittis maximus, sapien mi ultricies nisi, id congue sem diam id neque. Praesent iaculis ante in nulla venenatis imperdiet.</p>
-        <p class="text-bold">Aliquam erat volutpat. Donec lacinia aliquet pellentesque. Proin quis tortor tempor, luctus nulla vitae, dictum nulla. Integer nec egestas dolor. Ut sit amet rhoncus ante, malesuada commodo nulla. Maecenas eget nisi erat. Donec gravida, tellus id sagittis maximus, sapien mi ultricies nisi, id congue sem diam id neque. Praesent iaculis ante in nulla venenatis imperdiet.</p>
+    <div class="black-white">
+      <div class="black"></div>
+      <div class="white"></div>
+      <div class="slider-section">
+        <h2>Lorem ipsum
+          dolor sit amet.
+        </h2>
+        <service-slider />
       </div>
     </div>
     <service-quote />
