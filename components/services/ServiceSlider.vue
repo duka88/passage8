@@ -6,7 +6,9 @@
           <span>{{show.num}}</span>
         </div>
         <div class="body">
-           <h2>{{show.h}}</h2>
+          <nuxt-link :to='show.link'>
+             <h2>{{show.h}}</h2>
+          </nuxt-link>
         </div>
         <div class="s-footer">
           <div @click="changeText()" class="link-contact-wrap">
@@ -32,8 +34,8 @@ export default {
         title: 'GRAPHIC DESIGN',
         h: 'GRAPHIC DESIGN',
         num: '01',
-        img: 'graphic-design-slika.jpg'
-
+        img: 'graphic-design-slika.jpg',
+        link: '/graphic-design-services'
 
       },
 
@@ -41,51 +43,59 @@ export default {
           title: 'GRAPHIC DESIGN',
           h: 'GRAPHIC DESIGN',
           num: '01',
-          img: 'graphic-design-slika.jpg'
+          img: 'graphic-design-slika.jpg',
+          link: '/graphic-design-services'
 
         },
         {
           title: 'Web Development',
           h: 'WEB DEV',
           num: '02',
-          img: 'services-2.jpg'
+          img: 'services-2.jpg',
+          link: '/web-development-services'
         },
         {
           title: 'IT Maintenance',
           h: 'IT MAINTENANCE',
           num: '03',
-          img: 'services-3.jpg'
+          img: 'services-3.jpg',
+          link: '/it-maintenance-services'
          
         },
         {
           title: 'Content Marketing',
           h: 'CONTENT',
           num: '04',
-          img: 'services-4.jpg'
+          img: 'services-4.jpg',
+          link: '/content-marketing-services'
         },
         {
           title: 'Social Media',
           h: 'SOCIAL MEDIA',
           num: '05',
-          img: 'services-5.jpg'
+          img: 'soc-media-slika.jpg',
+          link: '/social-media-marketing-services'
         },
         {
           title: 'Pay-Per-Click',
           h: 'PPC',
           num: '06',
-          img: 'services-6.jpg'
+          img: 'services-6.jpg',
+          link: '/ppc-management-services'
         },
         {
-          title: 'Graphic Design',
-          h: 'GRAPHIC DESIGN',
+          title: 'SEO',
+          h: 'SEO',
           num: '07',
-          img: 'services-7.jpg'
+          img: 'services-7.jpg',
+          link: '/seo-services'
         },
         {
           title: 'White Label',
           h: 'WHITE LABEL',
           num: '08',
-          img: 'services-8.jpg'
+          img: 'services-8.jpg',
+          link: '/white-label-services'
         },
 
       ]
@@ -104,6 +114,7 @@ export default {
       this.show.num = this.services[this.cont].num;
       this.show.img = this.services[this.cont].img;
       this.show.h = this.services[this.cont].h;
+      this.show.link = this.services[this.cont].link;
       
     }
   },

@@ -249,7 +249,13 @@ $mb-60: 60px;
 }
 
 //text
+.text-center{
+  text-align: center;
+}
 
+.bold-600{
+  font-weight: 600;
+}
 .text-red {
   color: $main_color;
 }
