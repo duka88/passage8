@@ -157,21 +157,35 @@
           }
         }
 
-        .text-area {
-          padding: 30px;
+        .width-50 {
+          .text-area {
+            padding: 0;
+            grid-template-rows: 70px auto 70px;
+
+          }
         }
       }
 
+      .width-50 {
+        .text-area {
+          grid-template-rows: 70px auto 70px;
+
+        }
+      }
     }
 
   }
 
   @media only screen and (max-width: 1050px) {
+    .black-white {
+
+      grid-template-rows: 100px 250px 250px;
+    }
 
     .slider-section {
       .service-slider {
         position: relative;
-        height: 650px;
+        height: 450px;
 
         .text-area {
           position: absolute;
@@ -203,60 +217,191 @@
   }
 
   @media only screen and (max-width: 850px) {
+    .black-white {
 
-    .slider-section {
+      grid-template-rows: 80px 250px 250px;
+
       h2 {
-        text-align: center;
-      }
-
-      #servicesBoxMob {
-        padding: 0;
-
-        h2 {
-          font-size: 36px;
-          color: $dark_pink;
-        }
+        font-size: 55px;
       }
     }
 
-  }
-
-  @media only screen and (max-width: 560px) {
     .slider-section {
-      #servicesBoxMob {
-        .service-text {
-          p {
-            font-size: 16px;
-            line-height: 30px;
+      .service-slider {
+        .head {
+
+          span {
+            font-size: 50px;
           }
         }
-      }
-    }
-  }
 
-  @media only screen and (max-width: 360px) {
-    .slider-section {
-      padding: 70px 30px;
+        .text-area {}
 
-      #servicesBoxMob {
 
-        h2 {
-          font-size: 30px;
-          color: $dark_pink;
-        }
-
-        .link-wrap {
-          div {
-            .open {
-              i {
-                top: 5px;
-                right: 10px;
-                font-size: 28px;
-              }
-
+        .width-50 {
+          .body {
+            h2 {
+              font-size: 50px;
+              line-height: 55px;
             }
           }
         }
+
+        .s-footer {
+
+          .link-contact-wrap {
+            height: 40px;
+            width: 70px;
+
+          }
+        }
+
       }
     }
+
+  }
+
+  @media only screen and (max-width: 720px) {
+
+    .slider-section {
+      .service-slider {
+        .width-50 {
+          .head {
+            grid-column: 1/span 4;
+          }
+
+          .body {
+            h2 {
+              font-size: 50px;
+              line-height: 55px;
+            }
+          }
+        }
+
+        .s-footer {
+          grid-column: 10/ -1;
+
+          .link-contact-wrap {
+            height: 40px;
+            width: 70px;
+
+          }
+        }
+
+      }
+    }
+
+  }
+
+
+  @media only screen and (max-width: 560px) {
+    .black-white {
+
+      grid-template-rows: 100px 200px 200px;
+    }
+
+    .slider-section {
+      .service-slider {
+        height: 340px;
+
+        .width-50 {
+          .head {
+            grid-column: 1/span 4;
+          }
+
+          .body {
+            h2 {
+              font-size: 40px;
+              line-height: 45px;
+            }
+          }
+        }
+
+        .s-footer {
+          grid-column: 10/ -1;
+
+          .link-contact-wrap {
+            height: 40px;
+            width: 70px;
+
+          }
+        }
+
+      }
+    }
+
+  }
+
+  @media only screen and (max-width: 480px) {
+    .slider-section {
+      .service-slider {
+        height: 300px;
+
+        .width-50 {
+          .head {
+            grid-column: 1/span 5;
+
+            span {
+              font-size: 40px;
+            }
+          }
+
+          .body {
+            h2 {
+              font-size: 30px;
+              line-height: 35px;
+            }
+          }
+        }
+
+        .s-footer {
+          grid-column: 9/ -1;
+
+
+        }
+
+      }
+    }
+
+  }
+
+  @media only screen and (max-width: 360px) {
+    .black-white {
+
+      h2 {
+        font-size: 43px;
+        line-height: 50px;
+      }
+    }
+
+    .slider-section {
+      .service-slider {
+        height: 280px;
+
+        .width-50 {
+          .head {
+            grid-column: 1/span 5;
+
+            span {
+              font-size: 40px;
+            }
+          }
+
+          .body {
+            h2 {
+              font-size: 24px;
+              line-height: 27px;
+            }
+          }
+        }
+
+        .s-footer {
+          grid-column: 8/ -1;
+
+
+        }
+
+      }
+    }
+
   }
