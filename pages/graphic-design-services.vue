@@ -82,7 +82,6 @@
               </div>
             </li>
           </ul>
-          
         </div>
       </div>
     </div>
@@ -96,58 +95,66 @@
     </div>
     <div class="sm-services">
       <div class="text-wrap">
-        <h2>What We Offer<span class="text-red">?</span>
+        <h2 class=" text-center">Benefits You Get
+          with Our Graphic Design Company<span class="text-red">.</span>
         </h2>
         <div class="border-red"></div>
+        <p class="text-grey text-center">We are a highly-skilled graphic design agency with years of experience and enormous passion for the digital world.
+          Our professional graphic designs are useful in making a good impression on your current and potential clients. </p>
+        <p class="text-grey text-center">Whether you’re looking to design a product brochure, create an informational flyer, rebrand your website, create a logo or infographics, Passage Eight as a creative agency can help you reach your target audience in an easy and impactful way.
+        </p>
+        <p class="bold-600 text-center">Our top-level experts in graphic design have a wealth of knowledge and experience with various types of clients.
+          Our marketing specialists devoted their careers to digital projects and years of practice allow them to identify potential solutions and opportunities to make the most of your marketing budget.</p>
       </div>
-      <div class="single-service-wrap right">
-        <div class="social-text">
-          <h3>Facebook Management Services</h3>
-          <p>Did you know that Facebook has more than 2.45 billion active monthly users?</p>
-          <p>If you are looking for a place to connect and engage with your audience,
-            Facebook is a safe bet.
-            We can help you raise your online presence,
-            brand reputation and attract more visitors through the amazing power of Facebook</p>
+      <div class="text-wrap ">
+        <h2 class=" text-center">Why Choose Our Top Graphic Designers<span class="text-red">?</span>
+        </h2>
+        <div class="border-red"></div>
+        <p class="bold-600 text-center">Choosing the right graphic design agency from a multitude out there is certainly no easy task.
+          In a variety of an increasingly diverse range of specialist services,
+          it’s important to find out the right “fit” for your needs.
+          Our support and service are built on trust and we are saying that with confidence.</p>
+      </div>
+      <div class="single-service-wrap left">
+        <div class="social-number">
+          <span>01</span>
         </div>
-        <div class="social-img">
-          <img src="@/assets/img/facebook-icon.png" alt="">
+        <div class="social-text">
+          <h3 class="text-red">Experienced graphic design professionals</h3>
+          <p>We are fully trained business professionals who enjoy our job
+            and have one mission in business life – to help our client’s vision come true.</p>
         </div>
       </div>
       <div class="single-service-wrap left">
-        <div class="social-img">
-          <img src="@/assets/img/instagram-icon.png" alt="">
+        <div class="social-number">
+          <span>02</span>
         </div>
         <div class="social-text">
-          <h3>Instagram Management Services</h3>
-          <p>Did you know that more than 40 billion photos have been shared in Instagram history
-            and that there are more than 4.2 billion likes per day? </p>
-          <p>Instagram provides your business with a unique opportunity
-            to place advertisements in a visual form.
-            The images you share about your products or services help in forming opinions
-            most people have about your business. </p>
+          <h3 class="text-red">Saving time and money</h3>
+          <p>We are fast and able to move quickly so your time with us won’t be wasted.
+            We deliver projects in time, every time</p>
         </div>
       </div>
-      <div class="single-service-wrap right">
+      <div class="single-service-wrap left">
+        <div class="social-number">
+          <span>03</span>
+        </div>
         <div class="social-text">
-          <h3>Pinterest Management Services</h3>
-          <p>Did you know that by 2020, Pinterest ad revenue is projected to surpass $1 billion?
-          </p>
-          <p>Almost 95% of Pinterest users scroll through Pinterest for making a plan of purchase
-            or – to make a purchase!
-            With a strong social media campaign, we can make your presence on this platform flawless. </p>
-        </div>
-        <div class="social-img">
-          <img src="@/assets/img/pinterest-icon.png" alt="">
+          <h3 class="text-red">A broad range of services</h3>
+          <p>We are experts at providing any solutions you are looking for,
+            even if sometimes you aren’t sure what you are looking for yourselves.
+            Let our experts help to make your job easier.</p>
         </div>
       </div>
-      <div class="text-wrap">
-        <h2>Benefits of Social Media Marketing<span class="text-red">.</span>
-        </h2>
-        <div class="border-red"></div>
-        <p class="text-grey text-center">Implementing a well-thought-out strategy on social media networks extends far beyond than just increasing sales.
-          It helps you gain the necessary information about understanding your audience, establishing yourself as an expert in the field, increasing awareness of your brand, and developing a loyal customer base. </p>
-        <p class="bold-600 text-center">Creating effective social media strategies on various networks will spread the word about your mission, services, and products you offer through engaging and captivating content that will best showcase
-          the uniqueness of your business or brand. </p>
+      <div class="single-service-wrap left">
+        <div class="social-number">
+          <span>04</span>
+        </div>
+        <div class="social-text">
+          <h3 class="text-red">Your end goal is our first</h3>
+          <p>We are a team of people who is all about managing your outcomes, not ours.
+            We exist to help out clients in areas they aren’t familiar with. </p>
+        </div>
       </div>
     </div>
     <service-quote page="design" />
